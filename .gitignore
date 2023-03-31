@@ -1,1 +1,2 @@
 /airflow/logs/
+/airflow/.env
