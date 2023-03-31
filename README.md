@@ -1,32 +1,28 @@
 ﻿# Orangutan STEM
 Welecome to the orangutan-stem GitHub Repo! Here you will find all of our pipelines we have built in the youtube series.
 
-YouTube: youtube.com/@orangutan-stem
+[Orangutan STEM YouTube Channel](youtube.com/@orangutan-stem)
 
 
-# Table of contents
-
-
-
-
-# Project Focus
+## Table of contents
 
 
 
 
-# Principles
-
-
-
-# Requirements
+## Project Focus
 
 
 
 
-# Getting started
+## Principles
+
+
+
+## Requirements
 
 
 
 
+## Getting started
 
 
