@@ -1,2 +1,3 @@
 /airflow/logs/
 .env
+__pycache__
