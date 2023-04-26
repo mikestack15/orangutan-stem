@@ -1,5 +1,5 @@
 ﻿# Orangutan STEM
-Welecome to the orangutan-stem GitHub Repo! Here you will find all of our pipelines we have built in the youtube series.
+Welcome to the orangutan-stem GitHub Repo! Here you will find all of our pipelines we have built in the youtube series.
 
 [Orangutan STEM YouTube Channel](https://youtube.com/@orangutan-stem)
 
