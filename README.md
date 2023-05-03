@@ -51,6 +51,16 @@ Data Lakes
 2. [AWS](https://aws.amazon.com/big-data/datalakes-and-analytics/what-is-a-data-lake/)
 3. [Talend](https://www.talend.com/resources/what-is-data-lake/)
 
+Data Orchestration Tools
+1. [Apache Airflow with Marc Lamberti](https://www.udemy.com/user/lockgfg/)
+2. [Apache Airflow Documentation](https://airflow.apache.org/docs/apache-airflow/stable/index.html)
+3. [Mage](https://docs.mage.ai/introduction/overview)
+
+Data Processing Tools (Pythonic)
+1. [Pandas](https://pandas.pydata.org/docs/getting_started/index.html)
+2. [PySpark](https://sparkbyexamples.com/pyspark-tutorial/)
+3. [Pola.rs](https://www.pola.rs/)
+
 Data Influencers to Follow
 1. Zach Wilson (Data)
 2. Sarah Floris (Machine Learning, Software Engineering)
