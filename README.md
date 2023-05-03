@@ -41,4 +41,4 @@ Be sure to read the requirements carefully, submerge yourself in documentation, 
 2. Curriculum Outline and Roadmap
 3. Requirements
 
-<img src="https://github.com/mikestack15/orangutan-stem/blob/main/docs/wiki_pics/future_of_data_in_agriculture.png" width="300" height="400">
+<img src="https://github.com/mikestack15/orangutan-stem/blob/main/docs/wiki_pics/future_of_data_in_agriculture.png" width="600" height="800">
