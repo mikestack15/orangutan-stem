@@ -28,7 +28,7 @@ Python
 2. [Real Python](https://realpython.com/)
 3. [Microsoft Training](https://learn.microsoft.com/en-us/training/paths/beginner-python/)
 4. [Google Training](https://developers.google.com/edu/python)
-5. [Learn Python](https://www.learnpython.org/)
+5. [Learn Python (DataCamp)](https://www.learnpython.org/)
 
 
 
