@@ -8,9 +8,9 @@ Welcome to the orangutan-stem GitHub Repo! Here you will find the repository con
 
 ## Project Focus
 
-This project focuses on exposing nascent data professionals to the world of data engineering through real-world applications. The curriculum outlined in the [wiki](https://github.com/mikestack15/orangutan-stem/wiki) and on the YouTube channel, demonstrate how to properly setup local and cloud-based infrastructure to collect, ingest, process, store, and deliver data with modern tools that data engineers use on a daily basis.
+This project focuses on exposing nascent data professionals to the world of data engineering through real-world applications. The curriculum outlined in the [wiki](https://github.com/mikestack15/orangutan-stem/wiki/Curriculum) and on the YouTube channel, demonstrate how to properly setup local and cloud-based infrastructure to collect, ingest, process, store, and deliver data with modern tools that data engineers use on a daily basis.
 
-Orangutan STEM is a project that seeks to build pipelines that capture valuable farmland data, provide education for interested data professionals, and is an ongoing project (founded in 2019) to show the latest technologies available in the field. To read more about the origins of this project, check out the [wiki](https://github.com/mikestack15/orangutan-stem/wiki).
+Orangutan STEM is a project that seeks to build pipelines that capture valuable farmland data, provide education for interested data professionals, and is an ongoing project (founded in 2019) to show the latest technologies available in the field. To read more about the origins of this project, check out the [wiki](https://github.com/mikestack15/orangutan-stem/wiki/Orangutan-STEM-Project-Origins-&-Background).
 
 Be sure to read the requirements carefully, submerge yourself in documentation, and work alongside the curriculum of YouTube videos in the specified order. For advanced  learners, the videos will show some of the latest and greatest tools, and each activity is independent of another (unless specified), so feel free to skip around as desired. I hope this repository, knowledge-base, and YouTube series can be valuable to any data professional, no matter what background they come from!
 
