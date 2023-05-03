@@ -13,7 +13,7 @@ Orangutan STEM is a project that seeks to build pipelines that capture valuable 
 Be sure to read the requirements, submerge yourself in documentation, and work alongside the curriculum of YouTube videos in the specified order. For advanced data engineers, some of the videos will show some of the latest and greatest that will allow forgoing a lot of the previous videos. I hope this repository, knowledge-base, and YouTube series can be valuable to all and any data professionals, no matter where they come from!
 
 
-The prerequisite skills to successfully go through the activities includes:
+The prerequisite skills to successfully go through the activities:
 
 1. Intermediate Python
 2. Basic SQL
