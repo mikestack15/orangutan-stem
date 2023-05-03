@@ -14,6 +14,7 @@ def take_still_frame_image():
 	config = picam.create_preview_configuration()
 	picam.configure(config)
 
+	print(os.getcwd())
 
 	curr_datetime = datetime.now().strftime('%Y-%m-%d %H-%M-%S')
 
