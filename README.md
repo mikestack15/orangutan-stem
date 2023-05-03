@@ -27,7 +27,7 @@ Orangutan STEM is a project that seeks to build pipelines that capture valuable 
 
 To read more about the origins of this project, or take a trekking tour in the nearby Gunung Leuser National Park, check out the [wiki](https://github.com/mikestack15/orangutan-stem/wiki/Orangutan-STEM-Project-Origins-&-Background).
 
-Be sure to read the requirements carefully, submerge yourself in documentation, and work alongside the curriculum of YouTube videos in the specified order. For advanced  learners, the videos will show some of the latest and greatest tools, and each activity is independent of another (unless specified), so feel free to skip around as desired. I hope this repository, knowledge-base, and YouTube series can be valuable to any data professional, no matter what background they come from!
+Be sure to read the requirements carefully, submerge yourself in documentation, and work alongside the curriculum of YouTube videos. For advanced  learners, the videos will show some of the latest and greatest tools, and each activity is independent of another (unless specified), so feel free to skip around as desired. I hope this repository, knowledge-base, and YouTube series can be valuable to any data professional, no matter what background they come from!
 
 ## Prerequisite Skills
 1. Intermediate Python
