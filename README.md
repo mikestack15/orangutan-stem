@@ -17,7 +17,7 @@ Welcome to the orangutan-stem GitHub Repo! Here you will find the repository con
 
 [Orangutan STEM YouTube Channel](https://youtube.com/@orangutan-stem)
 
-<img src="https://github.com/mikestack15/orangutan-stem/blob/main/docs/wiki_pics/orangutan_gunung_leuser_march_23.jpg" width="300" height="350">
+<img src="https://github.com/mikestack15/orangutan-stem/blob/main/docs/wiki_pics/orangutan_gunung_leuser_march_23.jpg" width="300" height="300">
 
 ## Project Focus
 
