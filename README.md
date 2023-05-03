@@ -12,7 +12,7 @@ Orangutan STEM is a project that seeks to build pipelines that capture valuable 
 
 Be sure to read the requirements, submerge yourself in documentation, and work alongside the curriculum of YouTube videos in the specified order. For advanced  learners, the videos will show some of the latest and greatest tools, and each activity is independent of another (unless specified). I hope this repository, knowledge-base, and YouTube series can be valuable to any data professionals, no matter what background they come from!
 
-## Tools, Languages, and Frameworks
+## Languages, Platforms, and Frameworks
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Apache Airflow](https://img.shields.io/badge/Apache%20Airflow-017CEE?style=for-the-badge&logo=Apache%20Airflow&logoColor=white)
 ![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
@@ -41,8 +41,7 @@ Some good resources to try out if you are completely new to the field:
 4. [Learn Python (DataCamp)](https://www.learnpython.org/)
 
 
-
-## Sql
+## SQL
 1. [Khan Academy](https://www.khanacademy.org/computing/computer-programming/sql)
 2. [W3 Schools](https://www.w3schools.com/sql/)
 3. [Guru99 PostgreSQL training](https://www.guru99.com/postgresql-tutorial.html)
