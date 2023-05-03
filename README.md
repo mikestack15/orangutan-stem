@@ -22,7 +22,7 @@ The prerequisite skills to successfully go through the activities:
 
 Some good resources to try out if you are completely new to the field:
 
-Python
+## Python
 
 1. [Python Beginner's Guide](https://wiki.python.org/moin/BeginnersGuide)
 2. [Real Python](https://realpython.com/)
@@ -32,50 +32,45 @@ Python
 
 
 
-Sql
+## Sql
 1. [Khan Academy](https://www.khanacademy.org/computing/computer-programming/sql)
 2. [W3 Schools](https://www.w3schools.com/sql/)
 3. [Guru99 PostgreSQL training](https://www.guru99.com/postgresql-tutorial.html)
 
 
-Linux
+## Linux
 1. [Linux Journey](https://linuxjourney.com/)
 2. [Linux Upskill Challenge Github](https://github.com/livialima/linuxupskillchallenge)
 
-Data Warehouses
+## Data Warehouses
 1. [Kimball](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/books/data-warehouse-dw-toolkit/)
 2. [Pluralsight](https://www.pluralsight.com/courses/modernizing-data-lakes-data-warehouses-google-cloud-5)
 
-Data Lakes
+## Data Lakes
 1. [Databricks](https://www.databricks.com/discover/data-lakes)
 2. [AWS](https://aws.amazon.com/big-data/datalakes-and-analytics/what-is-a-data-lake/)
 3. [Talend](https://www.talend.com/resources/what-is-data-lake/)
 
-Data Orchestration Frameworks
+## Data Orchestration Frameworks
 1. [Apache Airflow with Marc Lamberti](https://www.udemy.com/user/lockgfg/)
 2. [Apache Airflow Documentation](https://airflow.apache.org/docs/apache-airflow/stable/index.html)
 3. [Mage](https://docs.mage.ai/introduction/overview)
 
-Data Processing Frameworks (Pythonic)
+## Data Processing Frameworks (Pythonic)
 1. [Pandas](https://pandas.pydata.org/docs/getting_started/index.html)
 2. [PySpark](https://sparkbyexamples.com/pyspark-tutorial/)
 3. [Pola.rs](https://www.pola.rs/)
 
-Data Influencers to Follow
+## Data Influencers to Follow
 1. Zach Wilson (Data)
 2. Sarah Floris (Machine Learning, Software Engineering)
 3. Chip Huyen (Machine Learning, Data)
 4. Marc Lamberti (Data Engineering-Airflow)
 
 
-## Requirements
-
-Requirements Wiki
-
-
 ## Getting started
 
-1. Verify Requirements
+1. Requirements
 2. Curriculum Outline and Roadmap
 3. Table of Contents
 
