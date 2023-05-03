@@ -6,11 +6,11 @@ Welcome to the orangutan-stem GitHub Repo! Here you will find all of our pipelin
 
 ## Project Focus
 
-This project focuses on exposing nascent data professionals to the world of data engineering through real-world project activities. The activities outlined in the wiki’s and on the YouTube channel demonstrate how to properly setup local and cloud-based infrastructure to collect, ingest, process, store, and deliver data with modern tools that data engineers use on a daily basis.
+This project focuses on exposing nascent data professionals to the world of data engineering through real-world project activities. The curriculum outlined in the wiki’s and on the YouTube channel demonstrate how to properly setup local and cloud-based infrastructure to collect, ingest, process, store, and deliver data with modern tools that data engineers use on a daily basis.
 
 Orangutan STEM is a project that seeks to build pipelines that capture valuable farmland data, provide education for interested data professionals, and is an ongoing project (founded in 2019) to show the latest technologies available in the field. To read more about the origins of this project, check out the wiki’s.
 
-Be sure to read the requirements, submerge yourself in documentation, and work alongside the curriculum of YouTube videos in the specified order. For advanced data engineers, some of the videos will show some of the latest and greatest that will allow forgoing a lot of the previous videos. I hope this repository, knowledge-base, and YouTube series can be valuable to all and any data professionals, no matter where they come from!
+Be sure to read the requirements, submerge yourself in documentation, and work alongside the curriculum of YouTube videos in the specified order. For advanced  learners, the videos will show some of the latest and greatest tools, and each activity is independent of another (unless specified). I hope this repository, knowledge-base, and YouTube series can be valuable to any data professionals, no matter what background they come from!
 
 
 The prerequisite skills to successfully go through the activities:
@@ -20,7 +20,7 @@ The prerequisite skills to successfully go through the activities:
 3. Familiarity with Linux/Windows operating systems
 4. No fear of failing! Realistically, it takes thousands of hours to become above-average in this field, so be sure to practice like you're Michael Jordan, and never give up like you are Kurt Warner!
 
-Some good resources to read and practice if you are completely new to the field:
+Some good resources to try out if you are completely new to the field:
 
 Python
 
@@ -51,12 +51,12 @@ Data Lakes
 2. [AWS](https://aws.amazon.com/big-data/datalakes-and-analytics/what-is-a-data-lake/)
 3. [Talend](https://www.talend.com/resources/what-is-data-lake/)
 
-Data Orchestration Tools
+Data Orchestration Frameworks
 1. [Apache Airflow with Marc Lamberti](https://www.udemy.com/user/lockgfg/)
 2. [Apache Airflow Documentation](https://airflow.apache.org/docs/apache-airflow/stable/index.html)
 3. [Mage](https://docs.mage.ai/introduction/overview)
 
-Data Processing Tools (Pythonic)
+Data Processing Frameworks (Pythonic)
 1. [Pandas](https://pandas.pydata.org/docs/getting_started/index.html)
 2. [PySpark](https://sparkbyexamples.com/pyspark-tutorial/)
 3. [Pola.rs](https://www.pola.rs/)
