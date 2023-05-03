@@ -45,4 +45,4 @@ Be sure to read the requirements carefully, submerge yourself in documentation, 
 3. [Requirements](https://github.com/mikestack15/orangutan-stem/wiki/Requirements)
 
 
-<img src="https://github.com/mikestack15/orangutan-stem/blob/main/docs/wiki_pics/orangutan_orchard_mango_trees_may_2023.JPG" width="600" height="800">
+<img src="https://github.com/mikestack15/orangutan-stem/blob/main/docs/wiki_pics/orangutan_orchard_mango_trees_may_2023.JPG" width="400" height="600">
