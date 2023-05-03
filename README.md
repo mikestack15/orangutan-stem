@@ -44,5 +44,5 @@ Be sure to read the requirements carefully, submerge yourself in documentation, 
 2. [Curriculum](https://github.com/mikestack15/orangutan-stem/wiki/Curriculum)
 3. [Requirements](https://github.com/mikestack15/orangutan-stem/wiki/Requirements)
 
-## Project Data Systems
-<img src="https://github.com/mikestack15/orangutan-stem/blob/main/docs/wiki_pics/future_of_data_in_agriculture.png" width="600" height="800">
+
+<img src="https://github.com/mikestack15/orangutan-stem/blob/main/docs/wiki_pics/orangutan_orchard_mango_trees_may_2023.JPG" width="600" height="800">
