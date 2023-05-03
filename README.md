@@ -1,7 +1,7 @@
 ﻿# Orangutan STEM
 Welcome to the orangutan-stem GitHub Repo! Here you will find the repository containing our codebase and wiki for the pipelines we have built in the youtube activities.
 
-<img src="https://github.com/mikestack15/orangutan-stem/blob/main/docs/wiki_pics/orangutan_stem_logo.jpg" width="150" height="100">
+<img src="https://github.com/mikestack15/orangutan-stem/blob/main/docs/wiki_pics/orangutan_stem_logo.jpg" width="300" height="200">
 
 [Orangutan STEM YouTube Channel](https://youtube.com/@orangutan-stem)
 
