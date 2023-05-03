@@ -1,6 +1,8 @@
 ﻿# Orangutan STEM
 Welcome to the orangutan-stem GitHub Repo! Here you will find the repository containing our codebase and wiki for the pipelines we have built in the youtube activities.
 
+[[https://github.com/mikestack15/orangutan-stem/blob/main/docs/wiki_pics/orangutan_stem_logo.jpg]]
+
 [Orangutan STEM YouTube Channel](https://youtube.com/@orangutan-stem)
 
 
@@ -10,7 +12,7 @@ This project focuses on exposing nascent data professionals to the world of data
 
 Orangutan STEM is a project that seeks to build pipelines that capture valuable farmland data, provide education for interested data professionals, and is an ongoing project (founded in 2019) to show the latest technologies available in the field. To read more about the origins of this project, check out the [wiki](https://github.com/mikestack15/orangutan-stem/wiki).
 
-Be sure to read the requirements carefully, submerge yourself in documentation, and work alongside the curriculum of YouTube videos in the specified order. For advanced  learners, the videos will show some of the latest and greatest tools, and each activity is independent of another (unless specified), so feel free to skip around as desired. I hope this repository, knowledge-base, and YouTube series can be valuable to any data professionals, no matter what background they come from!
+Be sure to read the requirements carefully, submerge yourself in documentation, and work alongside the curriculum of YouTube videos in the specified order. For advanced  learners, the videos will show some of the latest and greatest tools, and each activity is independent of another (unless specified), so feel free to skip around as desired. I hope this repository, knowledge-base, and YouTube series can be valuable to any data professional, no matter what background they come from!
 
 ## Languages, Platforms, and Frameworks
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
