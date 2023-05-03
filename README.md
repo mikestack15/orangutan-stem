@@ -41,4 +41,4 @@ Be sure to read the requirements carefully, submerge yourself in documentation, 
 2. Curriculum Outline and Roadmap
 3. Requirements
 
-<img src="https://github.com/mikestack15/orangutan-stem/blob/main/docs/wiki_pics/sketch_summer_2020.jpg">
+<img src="https://github.com/mikestack15/orangutan-stem/blob/main/docs/wiki_pics/sketch_summer_2020.jpg" width="300" height="400">
