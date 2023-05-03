@@ -26,9 +26,8 @@ Some good resources to try out if you are completely new to the field:
 
 1. [Python Beginner's Guide](https://wiki.python.org/moin/BeginnersGuide)
 2. [Real Python](https://realpython.com/)
-3. [Microsoft Training](https://learn.microsoft.com/en-us/training/paths/beginner-python/)
-4. [Google Training](https://developers.google.com/edu/python)
-5. [Learn Python (DataCamp)](https://www.learnpython.org/)
+3. [Microsoft Trainings](https://learn.microsoft.com/en-us/training/paths/beginner-python/)
+4. [Learn Python (DataCamp)](https://www.learnpython.org/)
 
 
 
@@ -60,6 +59,9 @@ Some good resources to try out if you are completely new to the field:
 1. [Pandas](https://pandas.pydata.org/docs/getting_started/index.html)
 2. [PySpark](https://sparkbyexamples.com/pyspark-tutorial/)
 3. [Pola.rs](https://www.pola.rs/)
+
+## Git & Source Control
+1. [GitHub](https://docs.github.com/en/get-started/quickstart/git-and-github-learning-resources)
 
 ## Data Influencers to Follow
 1. Zach Wilson (Data)
