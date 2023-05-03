@@ -6,7 +6,7 @@ Welcome to the orangutan-stem GitHub Repo! Here you will find the repository con
 
 ## Project Focus
 
-This project focuses on exposing nascent data professionals to the world of data engineering through real-world project activities. The curriculum outlined in the wiki’s and on the YouTube channel demonstrate how to properly setup local and cloud-based infrastructure to collect, ingest, process, store, and deliver data with modern tools that data engineers use on a daily basis.
+This project focuses on exposing nascent data professionals to the world of data engineering through real-world applications. The curriculum outlined in the wiki’s and on the YouTube channel demonstrate how to properly setup local and cloud-based infrastructure to collect, ingest, process, store, and deliver data with modern tools that data engineers use on a daily basis.
 
 Orangutan STEM is a project that seeks to build pipelines that capture valuable farmland data, provide education for interested data professionals, and is an ongoing project (founded in 2019) to show the latest technologies available in the field. To read more about the origins of this project, check out the wiki’s.
 
