@@ -53,4 +53,4 @@ Be sure to read the requirements carefully, submerge yourself in documentation, 
 * Lots of mangos, bananas, and pineapples in harvest
 * We recently planted a lot of dragonfruit, and plan on setting up more still-frame optic sensors at the end of 2023
 * Our avocado trees have lots of flowers blooming
-* Supri (pictured above) manages our farm and fills out the agricultural surveys to track important attributes of all the crops we are collecting data on
+* Supri (pictured above) manages our farm and fills out the agricultural surveys to track important attributes of the crops we are collecting data on
