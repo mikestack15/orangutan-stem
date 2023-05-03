@@ -46,3 +46,11 @@ Be sure to read the requirements carefully, submerge yourself in documentation, 
 
 
 <img src="https://github.com/mikestack15/orangutan-stem/blob/main/docs/wiki_pics/orangutan_orchard_mango_trees_may_2023.JPG" width="400" height="600">
+
+### Orangutan Orchard, May 2023
+
+* As of May 2023, our farm is 3 years old!
+* Lots of mangos, bananas, and pineapples in harvest
+* We recently planted a lot of dragonfruit, and plan on setting up more still-frame optic sensors at the end of 2023
+* Our avocado trees have lots of flowers blooming
+* Supri (pictured above) manages our farm and fills out the google sheet to track important attributes of all the crops we are collecting data on
