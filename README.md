@@ -1,4 +1,16 @@
-﻿<img src="https://github.com/mikestack15/orangutan-stem/blob/main/docs/wiki_pics/orangutan_stem_logo.jpg" width="300" height="200">
+﻿![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Apache Airflow](https://img.shields.io/badge/Apache%20Airflow-017CEE?style=for-the-badge&logo=Apache%20Airflow&logoColor=white)
+![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![Raspberry Pi](https://img.shields.io/badge/-RaspberryPi-C51A4A?style=for-the-badge&logo=Raspberry-Pi)
+![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
+![Apache Spark](https://img.shields.io/badge/Apache%20Spark-FDEE21?style=flat-square&logo=apachespark&logoColor=black)
+![OpenCV](https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![Google Drive](https://img.shields.io/badge/Google%20Drive-4285F4?style=for-the-badge&logo=googledrive&logoColor=white)
+
+<img src="https://github.com/mikestack15/orangutan-stem/blob/main/docs/wiki_pics/orangutan_stem_logo.jpg" width="300" height="200">
 
 # Orangutan STEM
 Welcome to the orangutan-stem GitHub Repo! Here you will find the repository containing our codebase and wiki for the pipelines we have built in the youtube activities.
@@ -13,19 +25,6 @@ This project focuses on exposing nascent data professionals to the world of data
 Orangutan STEM is a project that seeks to build pipelines that capture valuable farmland data, provide education for interested data professionals, and is an ongoing project (founded in 2019) to show the latest technologies available in the field. To read more about the origins of this project, check out the [wiki](https://github.com/mikestack15/orangutan-stem/wiki/Orangutan-STEM-Project-Origins-&-Background).
 
 Be sure to read the requirements carefully, submerge yourself in documentation, and work alongside the curriculum of YouTube videos in the specified order. For advanced  learners, the videos will show some of the latest and greatest tools, and each activity is independent of another (unless specified), so feel free to skip around as desired. I hope this repository, knowledge-base, and YouTube series can be valuable to any data professional, no matter what background they come from!
-
-## Technologies Used
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
-![Apache Airflow](https://img.shields.io/badge/Apache%20Airflow-017CEE?style=for-the-badge&logo=Apache%20Airflow&logoColor=white)
-![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
-![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
-![Raspberry Pi](https://img.shields.io/badge/-RaspberryPi-C51A4A?style=for-the-badge&logo=Raspberry-Pi)
-![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
-![Apache Spark](https://img.shields.io/badge/Apache%20Spark-FDEE21?style=flat-square&logo=apachespark&logoColor=black)
-![OpenCV](https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white)
-![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
-![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
-![Google Drive](https://img.shields.io/badge/Google%20Drive-4285F4?style=for-the-badge&logo=googledrive&logoColor=white)
 
 ## Prerequisite Skills
 1. Intermediate Python
