@@ -1,7 +1,7 @@
-﻿# Orangutan STEM
-Welcome to the orangutan-stem GitHub Repo! Here you will find the repository containing our codebase and wiki for the pipelines we have built in the youtube activities.
+﻿<img src="https://github.com/mikestack15/orangutan-stem/blob/main/docs/wiki_pics/orangutan_stem_logo.jpg" width="300" height="200">
 
-<img src="https://github.com/mikestack15/orangutan-stem/blob/main/docs/wiki_pics/orangutan_stem_logo.jpg" width="300" height="200">
+# Orangutan STEM
+Welcome to the orangutan-stem GitHub Repo! Here you will find the repository containing our codebase and wiki for the pipelines we have built in the youtube activities.
 
 [Orangutan STEM YouTube Channel](https://youtube.com/@orangutan-stem)
 
@@ -14,7 +14,7 @@ Orangutan STEM is a project that seeks to build pipelines that capture valuable 
 
 Be sure to read the requirements carefully, submerge yourself in documentation, and work alongside the curriculum of YouTube videos in the specified order. For advanced  learners, the videos will show some of the latest and greatest tools, and each activity is independent of another (unless specified), so feel free to skip around as desired. I hope this repository, knowledge-base, and YouTube series can be valuable to any data professional, no matter what background they come from!
 
-## Languages, Platforms, and Frameworks
+## Technologies Used
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Apache Airflow](https://img.shields.io/badge/Apache%20Airflow-017CEE?style=for-the-badge&logo=Apache%20Airflow&logoColor=white)
 ![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
