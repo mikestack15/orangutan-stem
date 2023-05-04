@@ -23,9 +23,9 @@ Welcome to the orangutan-stem GitHub Repo! Here you will find the repository con
 
 This project focuses on exposing nascent data professionals to the world of data engineering through real-world applications. The curriculum outlined in the [wiki](https://github.com/mikestack15/orangutan-stem/wiki/Curriculum) and on the YouTube channel, demonstrates how to properly setup local and cloud-based infrastructure to collect, ingest, process, store, and deliver data with modern tools that data engineers use on a daily basis.
 
-Orangutan STEM is a project that seeks to build pipelines that capture valuable farmland data, provide education for interested data professionals, and is an ongoing project (founded in 2019) to show the latest technologies available in the field. Our farm, Orangutan Orchard, is located in Bukit Lawang, Northern Sumatra, Indonesia.
+Orangutan STEM is a project that seeks to build farmland data pipelines, provide education for interested data professionals, and is an ongoing project (founded in 2019) to show the latest technologies available in the field. Our farm, Orangutan Orchard, is located in Bukit Lawang, Northern Sumatra, Indonesia.
 
-To read more about the origins of this project, or take a trekking tour in the nearby Gunung Leuser National Park, check out the [wiki](https://github.com/mikestack15/orangutan-stem/wiki/Orangutan-STEM-Project-Origins-&-Background).
+To read more about the origins of this project, or if you are interested in trekking the nearby Gunung Leuser National Park, check out the [project origins wiki](https://github.com/mikestack15/orangutan-stem/wiki/Orangutan-STEM-Project-Origins-&-Background).
 
 Be sure to read the requirements carefully, submerge yourself in documentation, and work alongside the curriculum of YouTube videos. For advanced  learners, the videos will show some of the latest and greatest tools, and each activity is independent of another (unless specified), so feel free to skip around as desired. I hope this repository, knowledge-base, and YouTube series can be valuable to any data professional, no matter what background they come from!
 
@@ -35,8 +35,8 @@ Be sure to read the requirements carefully, submerge yourself in documentation, 
 3. Familiarity with Linux/Windows operating systems
 4. No fear of failing! Realistically, it takes thousands of hours to become above-average in this field, so be sure to practice like you're Michael Jordan, and never give up like you are Kurt Warner!
 
-## Learning Resources
-[Resources](https://github.com/mikestack15/orangutan-stem/wiki/Learning-Resources)
+## Resources for Beginners
+[Resources Wiki](https://github.com/mikestack15/orangutan-stem/wiki/Learning-Resources)
 
 ## Getting started
 
@@ -45,12 +45,12 @@ Be sure to read the requirements carefully, submerge yourself in documentation, 
 3. [Requirements](https://github.com/mikestack15/orangutan-stem/wiki/Requirements)
 
 
-<img src="https://github.com/mikestack15/orangutan-stem/blob/main/docs/wiki_pics/orangutan_orchard_mango_trees_may_2023.JPG" width="400" height="600">
+<img src="https://github.com/mikestack15/orangutan-stem/blob/main/docs/wiki_pics/orangutan_orchard_mango_trees_may_2023.JPG" width="400" height="500">
 
 ### Orangutan Orchard, May 2023
 
 * As of May 2023, our farm is 3 years old!
-* Lots of mangos, bananas, and pineapples in harvest
+* Lots of mangos, bananas, and pineapples being harvested
 * We recently planted new dragonfruit and plan on setting up more still-frame optic sensors at the end of 2023 to track the growth. This data will be publically available!
 * Our avocado trees have lots of flowers blooming
 * Supri (pictured above) manages our farm and fills out digital agricultural surveys that track important attributes of the crops we are collecting data on
