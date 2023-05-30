@@ -1,6 +1,7 @@
 from airflow.decorators import dag, task
 from airflow.utils.dates import days_ago
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
+from airflow.models import Variable
 import requests
 import json
 import datetime
@@ -12,13 +13,13 @@ dt = datetime.datetime.now()
 current_year, current_month, current_day, current_hour = dt.strftime('%Y'), dt.strftime('%m'), dt.strftime('%d'), dt.strftime('%H')
 
 # set environment variables for open weather map api
-open_weather_api_key = os.environ['open_weather_api_key']
+open_weather_api_key = Variable.get('open_weather_api_key')
 
 """
 Activity 1: Open Weather Map API Airflow DAG
 
 Author: Michael Stack
-Last Updated: 5/5/2023
+Last Updated: 5/30/2023
 
 This DAG should work both locally and server-side if you utilize the docker-compose file in the airflow directory,
 and have the open weather map api key set as an environment variable.
