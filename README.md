@@ -23,7 +23,7 @@ Welcome to the orangutan-stem GitHub Repo! Here you will find the repository con
 
 This project focuses on exposing nascent data professionals to the world of data engineering through real-world applications. The curriculum outlined in the [wiki](https://github.com/mikestack15/orangutan-stem/wiki/Curriculum) and on the YouTube channel, demonstrates how to properly setup local and cloud-based infrastructure to collect, ingest, process, store, and deliver data with modern tools that data engineers use on a daily basis.
 
-Orangutan STEM is seeks to build farmland data pipelines, provide education for interested data professionals, and is an ongoing project (founded in 2019) to show the latest technologies available in the field. Our farm, Orangutan Orchard, is located in Bukit Lawang, Northern Sumatra, Indonesia.
+Orangutan STEM seeks to build farmland data pipelines, provide education for interested data professionals, and is an ongoing project (founded in 2019) to show the latest technologies available in the field. Our farm, Orangutan Orchard, is located in Bukit Lawang, Northern Sumatra, Indonesia.
 
 To read more about the origins of this project, or if you are interested in trekking the nearby Gunung Leuser National Park, check out the [project origins wiki](https://github.com/mikestack15/orangutan-stem/wiki/Orangutan-STEM-Project-Origins-&-Background).
 
