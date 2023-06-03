@@ -65,8 +65,7 @@ def extract_open_weather_data_to_lake():
         data = json.dumps(main_weather_content)
 
         s3_hook = S3Hook(aws_conn_id='aws_default')
-        s3_hook.load_string(data,f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/ \
-                            main_weather_content.json',bucket_name='orangutan-orchard',replace=True)
+        s3_hook.load_string(data,f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/main_weather_content.json',bucket_name='orangutan-orchard',replace=True)
 
 
     main_weather_data = extract()
