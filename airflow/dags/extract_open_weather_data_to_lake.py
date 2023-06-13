@@ -19,7 +19,7 @@ open_weather_api_key = Variable.get('open_weather_api_key')
 Activity 1: Open Weather Map API Airflow DAG
 
 Author: Michael Stack
-Last Updated: 5/30/2023
+Last Updated: 6/13/2023
 
 This DAG should work both locally and server-side if you utilize the docker-compose file in the airflow directory,
 and have the open weather map api key set as an environment variable.
