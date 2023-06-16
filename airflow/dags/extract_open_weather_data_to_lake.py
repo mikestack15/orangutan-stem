@@ -8,11 +8,11 @@ import datetime
 import os
 
 
-# set date variables for f string in data lake load
+# set date variables for f-string in data lake load
 dt = datetime.datetime.now()
 current_year, current_month, current_day, current_hour = dt.strftime('%Y'), dt.strftime('%m'), dt.strftime('%d'), dt.strftime('%H')
 
-# set environment variables for open weather map api
+# retrieve airflow variable for open weather map api key
 open_weather_api_key = Variable.get('open_weather_api_key')
 
 """
@@ -22,11 +22,13 @@ Author: Michael Stack
 Last Updated: 6/13/2023
 
 This DAG should work both locally and server-side if you utilize the docker-compose file in the airflow directory,
-and have the open weather map api key set as an environment variable.
+and have the open weather map api key set as an airflow (or environment) variable.
 
 Goal: Extract Open Weather Map API data into a date partitioned s3 bucket/key path
 
-This is a good use-case of the Airflow Taskflow API
+This is a good use-case of the Airflow Taskflow API, ensuring you have your local machine set up for future activities, and
+making sure your AWS account works.
+
 Be sure to follow along on the wiki if you need guidance on getting this dag to work on your desired machine
 
 """
@@ -65,7 +67,10 @@ def extract_open_weather_data_to_lake():
         data = json.dumps(main_weather_content)
 
         s3_hook = S3Hook(aws_conn_id='aws_default')
-        s3_hook.load_string(data,f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/main_weather_content.json',bucket_name='orangutan-orchard',replace=True)
+        s3_hook.load_string(data,
+                    f'raw/open_weather_map/bukit_lawang/'
+                    f'{current_year}/{current_month}/{current_day}/{current_hour}/main_weather_content.json',
+                    bucket_name='orangutan-orchard', replace=True)
 
 
     main_weather_data = extract()
