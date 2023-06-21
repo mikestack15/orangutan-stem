@@ -25,7 +25,7 @@ This project focuses on exposing nascent data professionals to the world of data
 
 Orangutan STEM seeks to build farmland data pipelines, provide education for interested data professionals, and is an ongoing project (founded in 2019) to show the latest technologies available in the field. Our farm, Orangutan Orchard, is located in Bukit Lawang, Northern Sumatra, Indonesia.
 
-To read more about the origins of this project, or if you are interested in trekking the nearby Gunung Leuser National Park, check out the [project origins wiki](https://github.com/mikestack15/orangutan-stem/wiki/Orangutan-STEM-Project-Origins-&-Background).
+To read more about the origins of this project, or if you are interested in trekking the nearby Gunung Leuser National Park, check out the [project origins wiki](https://github.com/mikestack15/orangutan-stem/wiki/Project-Origins-&-Background).
 
 Be sure to read the requirements carefully, submerge yourself in documentation, and work alongside the curriculum of YouTube videos. For advanced  learners, the videos will show some of the latest and greatest tools, and each activity is independent of another (unless specified), so feel free to skip around as desired. I hope this repository, knowledge-base, and YouTube series can be valuable to any data professional, no matter what background they come from!
 
