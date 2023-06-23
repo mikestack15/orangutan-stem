@@ -1,40 +1,41 @@
-from airflow.decorators import dag, task
-from airflow.utils.dates import days_ago
-from airflow.providers.amazon.aws.hooks.s3 import S3Hook
-from airflow.models import Variable
-import requests
-import json
 import datetime
+import json
 import os
 
+from airflow.decorators import dag, task
+from airflow.models import Variable
+from airflow.providers.amazon.aws.hooks.s3 import S3Hook
+from airflow.utils.dates import days_ago
+import requests
 
-# set date variables for f-string in data lake load
-dt = datetime.datetime.now()
-current_year, current_month, current_day, current_hour = dt.strftime('%Y'), dt.strftime('%m'), dt.strftime('%d'), dt.strftime('%H')
-
-# retrieve airflow variable for open weather map api key
-open_weather_api_key = Variable.get('open_weather_api_key')
 
 """
 Activity 1: Open Weather Map API Airflow DAG
 
 Author: Michael Stack
-Last Updated: 6/13/2023
+Last Updated: 6/22/2023
 
 This DAG should work both locally and server-side if you utilize the docker-compose file in the airflow directory,
-and have the open weather map api key set as an airflow (or environment) variable.
+and have the open weather map api key set as an airflow variable.
 
 Goal: Extract Open Weather Map API data into a date partitioned s3 bucket/key path
 
-This is a good use-case of the Airflow Taskflow API, ensuring you have your local machine set up for future activities, and
-making sure your AWS account works.
+This is a good use-case of the Airflow Taskflow API, ensuring you have your local machine set up with the necessary aws
+keys for s3, and you are able to successfully load data into gcp bigquery. 
 
 Be sure to follow along on the wiki if you need guidance on getting this dag to work on your desired machine
-
 """
 
+# set date variables for f-string in s3 bucket load
+dt = datetime.datetime.now()
+current_year, current_month, current_day, current_hour = dt.strftime('%Y %m %d %H').split()
 
-@dag(start_date=days_ago(1),
+# retrieve airflow variable for open weather map api key
+# note, this takes a few hours upon sign-up to become active, so be patient
+open_weather_api_key = Variable.get('open_weather_api_key')
+
+
+@dag(start_date=days_ago(0),
      schedule='@hourly',
      tags=['extract','weather-data'],
      description='run extraction for weather api data from open weather map',
