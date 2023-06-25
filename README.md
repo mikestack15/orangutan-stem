@@ -32,7 +32,7 @@ Be sure to read the [requirements](https://github.com/mikestack15/orangutan-stem
 ## Prerequisite Skills
 1. Intermediate Python
 2. Basic SQL
-3. Familiarity with Linux/Windows operating systems
+3. Familiarity with the command line on MacOS/Linux/Windows operating systems
 4. No fear of failing! Realistically, it takes thousands of hours to become above-average in this field, so be sure to practice like you're Michael Jordan, and never give up like you are Kurt Warner!
 
 ## Resources for Beginners
