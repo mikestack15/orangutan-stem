@@ -27,7 +27,7 @@ Orangutan STEM seeks to build farmland data pipelines, provide education for int
 
 To read more about the origins of this project, or if you are interested in trekking the nearby Gunung Leuser National Park, check out the [project origins wiki](https://github.com/mikestack15/orangutan-stem/wiki/Project-Origins-&-Background).
 
-Be sure to read the requirements carefully, submerge yourself in documentation, and work alongside the curriculum of YouTube videos. For advanced  learners, the videos will show some of the latest and greatest tools, and each activity is independent of another (unless specified), so feel free to skip around as desired. I hope this repository, knowledge-base, and YouTube series can be valuable to any data professional, no matter what background they come from!
+Be sure to read the [requirements](https://github.com/mikestack15/orangutan-stem/wiki/Requirements) carefully, submerge yourself in documentation, and work alongside the curriculum of YouTube videos. For advanced  learners, the videos will show some of the latest and greatest tools, and each activity is independent of another (unless specified), so feel free to skip around as desired. I hope this repository, knowledge-base, and YouTube series can be valuable to any data professional, no matter what background they come from!
 
 ## Prerequisite Skills
 1. Intermediate Python
