@@ -13,7 +13,7 @@ import requests
 Activity 1: Open Weather Map API Airflow DAG
 
 Author: Michael Stack
-Last Updated: 6/22/2023
+Last Updated: 6/26/2023
 
 This DAG should work both locally and server-side if you utilize the docker-compose file in the airflow directory,
 and have the open weather map api key set as an airflow variable.
@@ -35,6 +35,10 @@ current_year, current_month, current_day, current_hour = dt.strftime('%Y %m %d %
 open_weather_api_key = Variable.get('open_weather_api_key')
 
 
+# bukit lawang lat and long coordinates-feel free to update to yours!
+lat_long = {'lat': 3.5553, 'long': 98.1448}
+
+
 @dag(start_date=days_ago(0),
      schedule='@hourly',
      tags=['extract','weather-data'],
@@ -51,7 +55,8 @@ def extract_open_weather_data_to_lake():
         main_weather_content: dict
         """
 
-        response = requests.get(url=f"https://api.openweathermap.org/data/2.5/weather?lat=3.5553&lon=98.1448&appid={open_weather_api_key}")
+        response = requests.get(
+            url=f"https://api.openweathermap.org/data/2.5/weather?lat={lat_long['lat']}&lon={lat_long['long']}&appid={open_weather_api_key}")
         weather_data_content = response.json()
         main_weather_content = weather_data_content['main']
 
