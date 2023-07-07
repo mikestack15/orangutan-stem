@@ -1,6 +1,5 @@
 import datetime
 import json
-import os
 
 from airflow.decorators import dag, task
 from airflow.models import Variable
