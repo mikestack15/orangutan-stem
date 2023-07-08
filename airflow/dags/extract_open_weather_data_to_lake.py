@@ -1,10 +1,13 @@
 import datetime
 import json
+import uuid
 
 from airflow.decorators import dag, task
 from airflow.models import Variable
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.utils.dates import days_ago
+#from airflow.providers.google.cloud.transfers.s3_to_bigquery import S3ToBigQueryOperator
+#from custom_operators import S3ToBigQueryOperator
 import requests
 
 
@@ -34,6 +37,15 @@ current_year, current_month, current_day, current_hour = dt.strftime('%Y %m %d %
 # note, this takes a few hours upon sign-up to become active, so be patient
 open_weather_api_key = Variable.get('open_weather_api_key')
 
+# aws bucket and path
+aws_dest_bucket = 'orangutan-orchard'
+aws_dest_path = 'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/ingested_main_weather_content.json'
+
+
+# bigquery project.dataset.table and schema
+
+
+
 
 # bukit lawang lat and long coordinates-feel free to update to yours!
 lat_long = {'lat': 3.5553, 'long': 98.1448}
@@ -51,7 +63,7 @@ def extract_open_weather_data_to_lake():
     def extract():
         """
         Retrieve OpenWeatherAPI data via the requests library.
-        
+
         Returns:
             main_weather_content (dict): Main weather content.
         """
@@ -59,28 +71,63 @@ def extract_open_weather_data_to_lake():
             url=f"https://api.openweathermap.org/data/2.5/weather?lat={lat_long['lat']}&lon={lat_long['long']}&appid={open_weather_api_key}"
         )
         weather_data_content = response.json()
-        main_weather_content = weather_data_content['main']
-        
-        return main_weather_content
+        resp_main_weather_content = weather_data_content['main']
+
+        # Generate a UUID4
+        generated_uuid = uuid.uuid4()
+
+        # Get the current date and time
+        now = datetime.datetime.now()
+        # Convert the current date and time to a string in the format of a timestamp
+        resp_timestamp = now.strftime("%Y-%m-%d %H:%M:%S")
+
+        # Create a new dictionary with 'uuid' and 'timestamp' at the front
+        ingested_main_weather_content = {'uuid': str(generated_uuid), 'resp_ingested_timestamp': resp_timestamp}
+        # Update the new dictionary with the old dictionary
+        ingested_main_weather_content.update(resp_main_weather_content)
+
+        return ingested_main_weather_content
+
+
 
 
     @task()
-    def load(main_weather_content: dict):
+    def load(ingested_main_weather_content: dict):
         """
-        Loads OpenWeatherAPI response (dict/json) into S3 bucket/folder.
+        Loads OpenWeatherAPI response (dict/json) into S3 bucket/folder, and loads data into appropriate bigquery endpoint
         
         Args:
             main_weather_content (dict): Dictionary response from main_weather_content.
         """
-        data = json.dumps(main_weather_content)
+        data = json.dumps(ingested_main_weather_content)
 
+        # load data into aws s3
         s3_hook = S3Hook(aws_conn_id='aws_default')
         s3_hook.load_string(
             data,
-            f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/main_weather_content.json',
-            bucket_name='orangutan-orchard',
+            aws_dest_path,
+            bucket_name=aws_dest_bucket,
             replace=True
         )
+
+        # load data from s3 bucket into bigquery
+
+        # S3ToBigQueryOperator(
+        #     task_id='s3_to_bigquery',
+        #     bucket='your-s3-bucket-name',
+        #     source_objects=[aws_dest_path],
+        #     destination_project_dataset_table='orangutan-orchard.bukit_lawang_weather.raw_ingested_main_weather_content',
+        #     schema_fields=[
+        #         {'name': 'field1', 'type': 'STRING', 'mode': 'REQUIRED'},
+        #         {'name': 'field2', 'type': 'INT64', 'mode': 'NULLABLE'},
+        #         # add more fields according to your schema
+        #     ],
+        #     source_format='CSV',
+        #     create_disposition='CREATE_IF_NEEDED',
+        #     write_disposition='WRITE_TRUNCATE',
+        #     bigquery_conn_id='gcp_bigquery_conn',  # the connection id we defined earlier
+        #     google_cloud_storage_conn_id='aws_s3_conn',  # the connection id we defined earlier
+        # )
 
     main_weather_data = extract()
     load(main_weather_data)
