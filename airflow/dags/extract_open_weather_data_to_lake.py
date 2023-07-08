@@ -64,19 +64,20 @@ def extract_open_weather_data_to_lake():
     @task()
     def load(main_weather_content: dict):
         """
-        loads open weather api response (dict/json) into s3 bucket/folder
-        Params:
-        main_weather_content: dict
-        dictionary response from main_weather_content
+        Loads OpenWeatherAPI response (dict/json) into S3 bucket/folder.
+        
+        Args:
+            main_weather_content (dict): Dictionary response from main_weather_content.
         """
         data = json.dumps(main_weather_content)
 
         s3_hook = S3Hook(aws_conn_id='aws_default')
-        s3_hook.load_string(data,
-                    f'raw/open_weather_map/bukit_lawang/'
-                    f'{current_year}/{current_month}/{current_day}/{current_hour}/main_weather_content.json',
-                    bucket_name='orangutan-orchard', replace=True)
-
+        s3_hook.load_string(
+            data,
+            f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/main_weather_content.json',
+            bucket_name='orangutan-orchard',
+            replace=True
+        )
 
     main_weather_data = extract()
     load(main_weather_data)
