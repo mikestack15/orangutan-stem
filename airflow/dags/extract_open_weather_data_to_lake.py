@@ -12,7 +12,7 @@ import requests
 Activity 1: Open Weather Map API Airflow DAG
 
 Author: Michael Stack
-Last Updated: 6/26/2023
+Last Updated: 7/7/2023
 
 This DAG should work both locally and server-side if you utilize the docker-compose file in the airflow directory,
 and have the open weather map api key set as an airflow variable.
@@ -49,17 +49,19 @@ def extract_open_weather_data_to_lake():
     @task()
     def extract():
         """
-        retrieve open weather api data via requests library
+        Retrieve OpenWeatherAPI data via the requests library.
+        
         Returns:
-        main_weather_content: dict
+            main_weather_content (dict): Main weather content.
         """
-
         response = requests.get(
-            url=f"https://api.openweathermap.org/data/2.5/weather?lat={lat_long['lat']}&lon={lat_long['long']}&appid={open_weather_api_key}")
+            url=f"https://api.openweathermap.org/data/2.5/weather?lat={lat_long['lat']}&lon={lat_long['long']}&appid={open_weather_api_key}"
+        )
         weather_data_content = response.json()
         main_weather_content = weather_data_content['main']
-
+        
         return main_weather_content
+
 
     @task()
     def load(main_weather_content: dict):
