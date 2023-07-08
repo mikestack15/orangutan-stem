@@ -15,7 +15,8 @@ Author: Michael Stack
 Last Updated: 7/7/2023
 
 This DAG should work both locally and server-side if you utilize the docker-compose file in the airflow directory,
-and have the open weather map api key set as an airflow variable.
+and have the open weather map api key set as an airflow variable. Follow the instructions provied in the wiki,
+https://github.com/mikestack15/orangutan-stem/wiki/Activity-1:-Open-Weather-Map-API-Data-Pipeline
 
 Goal: Extract Open Weather Map API data into a date partitioned s3 bucket/key path
 
