@@ -6,10 +6,8 @@ from airflow.decorators import dag, task
 from airflow.models import Variable
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.utils.dates import days_ago
-#from airflow.providers.google.cloud.transfers.s3_to_bigquery import S3ToBigQueryOperator
-#from custom_operators import S3ToBigQueryOperator
 import requests
-
+from operators.custom_operators import S3toBigQueryOperator, DogNamedMike
 
 """
 Activity 1: Open Weather Map API Airflow DAG
@@ -94,7 +92,7 @@ def extract_open_weather_data_to_lake():
     @task()
     def load(ingested_main_weather_content: dict):
         """
-        Loads OpenWeatherAPI response (dict/json) into S3 bucket/folder, and loads data into appropriate bigquery endpoint
+        Writes OpenWeatherAPI response (dict/json) into S3 bucket/folder, and loads data into appropriate gcs/bigquery endpoint
         
         Args:
             main_weather_content (dict): Dictionary response from main_weather_content.
