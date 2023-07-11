@@ -50,7 +50,7 @@ class S3ToGCSAndBigQueryOperator(BaseOperator):
             prefix=self.s3_key,
             aws_conn_id=self.s3_conn_id,
             gcp_conn_id=self.gcs_conn_id,
-            dest_gcs=gcs_object,
+            dest_gcs=f'gs://{self.gcs_bucket}/',
             #gcs_prefix=gcs_object,
             replace=True,
             gzip=False,

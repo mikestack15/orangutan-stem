@@ -40,7 +40,7 @@ open_weather_api_key = Variable.get('open_weather_api_key')
 
 # lake bucket and key_path
 lake_dest_bucket = "orangutan-orchard"
-lake_dest_path = f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/'
+lake_dest_path = f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/raw_ingested_main_weather_content.json'
 
 # BigQuery project.dataset.table and schema
 bq_dest = 'orangutan-orchard.bukit_lawang_weather.raw_ingested_main_weather_content'
@@ -103,13 +103,13 @@ def extract_open_weather_data_to_lake():
             replace=True
         )
 
-        # Load data from S3 bucket into BigQuery
+        # Load data from S3 bucket into GCS & BigQuery
         gcs_bucket = 'orangutan-orchard'
-        gcs_key = f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/*.json'
+        gcs_key = f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/'
         s3_to_bigquery_operator = S3ToGCSAndBigQueryOperator(
                 task_id='s3_to_bigquery',
                 s3_bucket=lake_dest_bucket,
-                s3_key=f'raw/',
+                s3_key=f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/',
                 gcs_bucket=gcs_bucket,
                 gcs_key=gcs_key,
                 bigquery_table=bq_dest,
