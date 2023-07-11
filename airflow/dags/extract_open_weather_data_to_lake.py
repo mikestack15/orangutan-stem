@@ -7,56 +7,51 @@ from airflow.models import Variable
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.utils.dates import days_ago
 import requests
-from operators.custom_operators import S3toBigQueryOperator, DogNamedMike
+from operators.custom_operators import S3ToGCSAndBigQueryOperator
 
 """
 Activity 1: Open Weather Map API Airflow DAG
 
 Author: Michael Stack
-Last Updated: 7/7/2023
+Last Updated: 7/10/2023
 
 This DAG should work both locally and server-side if you utilize the docker-compose file in the airflow directory,
-and have the open weather map api key set as an airflow variable. Follow the instructions provied in the wiki,
+and have the open weather map api key set as an airflow variable. Follow the instructions provided in the wiki,
 https://github.com/mikestack15/orangutan-stem/wiki/Activity-1:-Open-Weather-Map-API-Data-Pipeline
 
-Goal: Extract Open Weather Map API data into a date partitioned s3 bucket/key path
+Goal: Extract Open Weather Map API data into a date-partitioned S3 bucket/key path
 
-This is a good use-case of the Airflow Taskflow API, ensuring you have your local machine set up with the necessary aws
-keys for s3, and you are able to successfully load data into gcp bigquery. 
+This is a good use-case of the Airflow Taskflow API, ensuring you have your local machine set up with the necessary AWS
+keys for S3, and you are able to successfully load data into GCP BigQuery.
 
-Be sure to follow along on the wiki if you need guidance on getting this dag to work on your desired machine
+Be sure to follow along on the wiki if you need guidance on getting this DAG to work on your desired machine
 """
 
-# set date variables for f-string in s3 bucket load
+# set date variables for f-string in S3 bucket load
 dt = datetime.datetime.now()
 current_year, current_month, current_day, current_hour = dt.strftime('%Y %m %d %H').split()
 
-# retrieve airflow variable for open weather map api key
+# retrieve airflow variable for open weather map API key
 # note, this takes a few hours upon sign-up to become active, so be patient
 open_weather_api_key = Variable.get('open_weather_api_key')
 
-# aws bucket and path
-aws_dest_bucket = 'orangutan-orchard'
-aws_dest_path = 'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/ingested_main_weather_content.json'
+# lake bucket and key_path
+lake_dest_bucket = "orangutan-orchard"
+lake_dest_path = f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/'
 
+# BigQuery project.dataset.table and schema
+bq_dest = 'orangutan-orchard.bukit_lawang_weather.raw_ingested_main_weather_content'
 
-# bigquery project.dataset.table and schema
-
-
-
-
-# bukit lawang lat and long coordinates-feel free to update to yours!
+# Bukit Lawang lat and long coordinates - feel free to update to yours!
 lat_long = {'lat': 3.5553, 'long': 98.1448}
 
 
 @dag(start_date=days_ago(0),
-     schedule='@hourly',
-     tags=['extract','weather-data'],
-     description='run extraction for weather api data from open weather map',
+     schedule_interval='@hourly',
+     tags=['extract', 'weather-data'],
+     description='Run extraction for weather API data from Open Weather Map',
      catchup=False)
-
 def extract_open_weather_data_to_lake():
-
     @task()
     def extract():
         """
@@ -86,49 +81,100 @@ def extract_open_weather_data_to_lake():
 
         return ingested_main_weather_content
 
-
-
-
     @task()
     def load(ingested_main_weather_content: dict):
         """
-        Writes OpenWeatherAPI response (dict/json) into S3 bucket/folder, and loads data into appropriate gcs/bigquery endpoint
-        
+        Writes OpenWeatherAPI response (dict/json) into S3 bucket/folder and loads data into appropriate GCS/BigQuery endpoint
+
         Args:
             main_weather_content (dict): Dictionary response from main_weather_content.
         """
         data = json.dumps(ingested_main_weather_content)
 
-        # load data into aws s3
+        # Load data into AWS S3
         s3_hook = S3Hook(aws_conn_id='aws_default')
         s3_hook.load_string(
             data,
-            aws_dest_path,
-            bucket_name=aws_dest_bucket,
+            lake_dest_path,
+            bucket_name=lake_dest_bucket,
             replace=True
         )
 
-        # load data from s3 bucket into bigquery
+        # Load data from S3 bucket into BigQuery
+        gcs_bucket = 'orangutan-orchard'
+        gcs_key = f'raw/'
+        s3_to_bigquery_operator = S3ToGCSAndBigQueryOperator(
+                task_id='s3_to_bigquery',
+                s3_bucket=lake_dest_bucket,
+                s3_key=f'raw/',
+                gcs_bucket=gcs_bucket,
+                gcs_key=gcs_key,
+                bigquery_table=bq_dest,
+                bigquery_schema_fields=[
+                    {
+                        "name": "uuid",
+                        "mode": "REQUIRED",
+                        "type": "STRING",
+                    },
+                    {
+                        "name": "resp_ingested_timestamp",
+                        "mode": "NULLABLE",
+                        "type": "DATETIME",
+                    },
+                    {
+                        "name": "temp",
+                        "mode": "NULLABLE",
+                        "type": "FLOAT",
+                    },
+                    {
+                        "name": "feels_like",
+                        "mode": "NULLABLE",
+                        "type": "FLOAT",
+                    },
+                    {
+                        "name": "temp_min",
+                        "mode": "NULLABLE",
+                        "type": "FLOAT",
+                    },
+                    {
+                        "name": "temp_max",
+                        "mode": "NULLABLE",
+                        "type": "FLOAT",
+                    },
+                    {
+                        "name": "pressure",
+                        "mode": "NULLABLE",
+                        "type": "FLOAT",
+                    },
+                    {
+                        "name": "humidity",
+                        "mode": "NULLABLE",
+                        "type": "FLOAT",
+                    },
+                    {
+                        "name": "sea_level",
+                        "mode": "NULLABLE",
+                        "type": "FLOAT",
+                    },
+                    {
+                        "name": "grnd_level",
+                        "mode": "NULLABLE",
+                        "type": "FLOAT",
+                    }
+                ],
+                s3_conn_id='aws_default',
+                gcs_conn_id='google_cloud_default',
+                bigquery_conn_id='bigquery_default'
+            )
 
-        # S3ToBigQueryOperator(
-        #     task_id='s3_to_bigquery',
-        #     bucket='your-s3-bucket-name',
-        #     source_objects=[aws_dest_path],
-        #     destination_project_dataset_table='orangutan-orchard.bukit_lawang_weather.raw_ingested_main_weather_content',
-        #     schema_fields=[
-        #         {'name': 'field1', 'type': 'STRING', 'mode': 'REQUIRED'},
-        #         {'name': 'field2', 'type': 'INT64', 'mode': 'NULLABLE'},
-        #         # add more fields according to your schema
-        #     ],
-        #     source_format='CSV',
-        #     create_disposition='CREATE_IF_NEEDED',
-        #     write_disposition='WRITE_TRUNCATE',
-        #     bigquery_conn_id='gcp_bigquery_conn',  # the connection id we defined earlier
-        #     google_cloud_storage_conn_id='aws_s3_conn',  # the connection id we defined earlier
-        # )
+        # Execute the BigQuery load operator
+        # Execute the BigQuery load operator
+        context = {"execution_date": datetime.datetime.now()}
+        s3_to_bigquery_operator.execute(context)
 
     main_weather_data = extract()
     load(main_weather_data)
+    
 
 
 weather_api_dag = extract_open_weather_data_to_lake()
