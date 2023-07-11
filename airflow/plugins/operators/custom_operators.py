@@ -1,60 +1,79 @@
+import logging
+
 from airflow.models import BaseOperator
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.providers.google.cloud.hooks.gcs import GCSHook
-from airflow.providers.google.cloud.transfers.gcs_to_bigquery import GCSToBigQueryOperator
-from airflow.utils.decorators import apply_defaults
+from airflow.providers.google.cloud.operators.bigquery import BigQueryInsertJobOperator
+from airflow.providers.google.cloud.transfers.s3_to_gcs import S3ToGCSOperator
+logging.getLogger().setLevel(logging.INFO)
 
-class S3toBigQueryOperator(BaseOperator):
 
-    @apply_defaults
+class S3ToGCSAndBigQueryOperator(BaseOperator):
+    template_fields = ('s3_key', 'gcs_bucket', 'gcs_key', 'bigquery_table')
+
     def __init__(
         self,
         s3_bucket,
         s3_key,
         gcs_bucket,
         gcs_key,
-        dataset_id,
-        table_id,
+        bigquery_table,
+        bigquery_schema_fields=None,
+        s3_conn_id='aws_default',
+        gcs_conn_id='google_cloud_default',
         bigquery_conn_id='bigquery_default',
-        gcp_conn_id='google_cloud_default',
-        aws_conn_id='aws_default',
-        *args, **kwargs
+        *args,
+        **kwargs
     ):
         super().__init__(*args, **kwargs)
         self.s3_bucket = s3_bucket
         self.s3_key = s3_key
         self.gcs_bucket = gcs_bucket
         self.gcs_key = gcs_key
-        self.dataset_id = dataset_id
-        self.table_id = table_id
+        self.bigquery_table = bigquery_table
+        self.bigquery_schema_fields = bigquery_schema_fields
+        self.s3_conn_id = s3_conn_id
+        self.gcs_conn_id = gcs_conn_id
         self.bigquery_conn_id = bigquery_conn_id
-        self.gcp_conn_id = gcp_conn_id
-        self.aws_conn_id = aws_conn_id
 
     def execute(self, context):
-        s3_hook = S3Hook(aws_conn_id=self.aws_conn_id)
-        gcs_hook = GCSHook(gcp_conn_id=self.gcp_conn_id)
+        logging.info("Transferring file from S3 to GCS...")
+        s3_hook = S3Hook(aws_conn_id=self.s3_conn_id)
+        gcs_hook = GCSHook(gcp_conn_id=self.gcs_conn_id)
 
-        self.log.info("Downloading file from S3")
-        data = s3_hook.read_key(self.s3_key, self.s3_bucket)
+        s3_object = f's3://{self.s3_bucket}/{self.s3_key}'
+        gcs_object = f'gs://{self.gcs_bucket}/{self.gcs_key}'
 
-        self.log.info("Uploading file to GCS")
-        gcs_hook.upload(self.gcs_bucket, self.gcs_key, data)
+        s3_to_gcs_op = S3ToGCSOperator(
+            task_id="s3_to_gcs",
+            bucket=self.s3_bucket,
+            prefix=self.s3_key,
+            aws_conn_id=self.s3_conn_id,
+            gcp_conn_id=self.gcs_conn_id,
+            dest_gcs=gcs_object,
+            #gcs_prefix=gcs_object,
+            replace=True,
+            gzip=False,
+            )
 
-        self.log.info("Loading data to BigQuery")
-        gcs_to_bq = GCSToBigQueryOperator(
-            task_id='gcs_to_bq',
-            bucket=self.gcs_bucket,
-            source_objects=[self.gcs_key],
-            destination_project_dataset_table=f'{self.dataset_id}.{self.table_id}',
-            autodetect=True,
-            source_format='NEWLINE_DELIMITED_JSON',
-            create_disposition='CREATE_IF_NEEDED',
-            write_disposition='WRITE_APPEND',
-            bigquery_conn_id=self.bigquery_conn_id,
-            google_cloud_storage_conn_id=self.gcp_conn_id,
+        s3_to_gcs_op.execute(context)
+
+        logging.info("File transferred from S3 to GCS successfully.")
+
+        logging.info("Loading data from GCS to BigQuery...")
+        bigquery_operator = BigQueryInsertJobOperator(
+            task_id='gcs_to_bigquery',
+            configuration={
+                'load': {
+                    'sourceFormat': 'NEWLINE_DELIMITED_JSON',
+                    'destinationTable': self.bigquery_table,
+                    'sourceUris': [gcs_object],
+                    'schema': {'fields': self.bigquery_schema_fields},
+                    'writeDisposition': 'WRITE_APPEND',
+                    'ignoreUnknownValues': True
+                }
+            },
+            gcp_conn_id=self.bigquery_conn_id
         )
-        gcs_to_bq.execute(context)
-
-class DogNamedMike():
-    print('bark bark')
+        bigquery_operator.execute(context)
+        logging.info("Data loaded from GCS to BigQuery successfully.")
