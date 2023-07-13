@@ -14,7 +14,7 @@ import requests
 Activity 1: Open Weather Map API Airflow DAG
 
 Author: Michael Stack
-Last Updated: 7/11/2023
+Last Updated: 7/13/2023
 
 This DAG should work both locally and server-side if you utilize the docker setup in the airflow directory,
 have the open weather map api key set as an airflow variable, and connections for 'aws_default', 'bigquery_default', 
@@ -44,11 +44,6 @@ lake_dest_path = f'raw/open_weather_map/bukit_lawang/{current_year}/{current_mon
 
 # BigQuery project.dataset.table and schema
 bq_dest = 'orangutan-orchard.bukit_lawang_weather.raw_ingested_main_weather_content'
-# bq_table = bigquery_table = {
-#     "projectId": "orangutan-orchard",
-#     "datasetId": "bukit_lawang_weather",
-#     "tableId": "raw_ingested_main_weather_content",
-# }
 
 # Bukit Lawang lat and long coordinates - feel free to update to yours!
 lat_long = {'lat': 3.5553, 'long': 98.1448}
@@ -107,7 +102,7 @@ def extract_open_weather_data_to_lake():
             bucket_name=lake_dest_bucket,
             replace=True
         )
-    # define your tasks
+    # define tasks for extracting api data and loading it into s3
     extract_task = extract()
     load_task = load(extract_task)    
     # Load data from S3 bucket into GCS & BigQuery
