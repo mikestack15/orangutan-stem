@@ -6,7 +6,7 @@ from airflow.decorators import dag, task
 from airflow.models import Variable
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.utils.dates import days_ago
-from operators.custom_operators import S3ToGCSAndBigQueryOperator
+from operators.custom_transfer_operators import S3ToGCSAndBigQueryOperator
 import requests
 
 
@@ -38,12 +38,27 @@ current_year, current_month, current_day, current_hour = dt.strftime('%Y %m %d %
 # note, this takes a few hours upon sign-up to become active, so be patient
 open_weather_api_key = Variable.get('open_weather_api_key')
 
-# lake bucket and key_path
+# lake bucket and key path. *Note the lake_dest_bucket is the same between s3 and gcs so you will see 'lake_dest_bucket' used
+# as the gcs_bucket or s3_bucket variable
 lake_dest_bucket = "orangutan-orchard"
-lake_dest_path = f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/raw_ingested_main_weather_content.json'
+lake_dest_path = f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/'
+s3_obj_path = f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/raw_ingested_main_weather_content.json'
 
-# BigQuery project.dataset.table and schema
+
+# BigQuery project.dataset.table and table schema
 bq_dest = 'orangutan-orchard.bukit_lawang_weather.raw_ingested_main_weather_content'
+bq_table_schema = [
+                    {"name": "uuid", "mode": "REQUIRED", "type": "STRING"},
+                    {"name": "resp_ingested_timestamp", "mode": "NULLABLE", "type": "DATETIME"},
+                    {"name": "temp", "mode": "NULLABLE", "type": "FLOAT"},
+                    {"name": "feels_like", "mode": "NULLABLE", "type": "FLOAT"},
+                    {"name": "temp_min", "mode": "NULLABLE", "type": "FLOAT"},
+                    {"name": "temp_max", "mode": "NULLABLE", "type": "FLOAT"},
+                    {"name": "pressure", "mode": "NULLABLE", "type": "FLOAT"},
+                    {"name": "humidity", "mode": "NULLABLE", "type": "FLOAT"},
+                    {"name": "sea_level", "mode": "NULLABLE", "type": "FLOAT"},
+                    {"name": "grnd_level", "mode": "NULLABLE", "type": "FLOAT"}
+                ]
 
 # Bukit Lawang lat and long coordinates - feel free to update to yours!
 lat_long = {'lat': 3.5553, 'long': 98.1448}
@@ -98,7 +113,7 @@ def extract_open_weather_data_to_lake():
         s3_hook = S3Hook(aws_conn_id='aws_default')
         s3_hook.load_string(
             data,
-            lake_dest_path,
+            s3_obj_path,
             bucket_name=lake_dest_bucket,
             replace=True
         )
@@ -106,29 +121,18 @@ def extract_open_weather_data_to_lake():
     extract_task = extract()
     load_task = load(extract_task)    
     # Load data from S3 bucket into GCS & BigQuery
-    gcs_bucket = 'orangutan-orchard'
-    gcs_key = f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/'
-    gcs_source_obj = f'{gcs_key}*.json'
+    #gcs_bucket = 'orangutan-orchard'
+    #gcs_key = f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/'
+    gcs_source_obj = f'{lake_dest_path}*.json'
     s3_to_bigquery_task = S3ToGCSAndBigQueryOperator(
                 task_id='s3_to_bigquery',
                 s3_bucket=lake_dest_bucket,
-                s3_key=f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/',
-                gcs_bucket=gcs_bucket,
-                gcs_key=gcs_key,
+                s3_key=lake_dest_path,
+                gcs_bucket=lake_dest_bucket,
+                gcs_key=lake_dest_path,
                 gcs_source_obj=gcs_source_obj,
                 bigquery_table=bq_dest,
-                bigquery_schema_fields=[
-                    {"name": "uuid", "mode": "REQUIRED", "type": "STRING"},
-                    {"name": "resp_ingested_timestamp", "mode": "NULLABLE", "type": "DATETIME"},
-                    {"name": "temp", "mode": "NULLABLE", "type": "FLOAT"},
-                    {"name": "feels_like", "mode": "NULLABLE", "type": "FLOAT"},
-                    {"name": "temp_min", "mode": "NULLABLE", "type": "FLOAT"},
-                    {"name": "temp_max", "mode": "NULLABLE", "type": "FLOAT"},
-                    {"name": "pressure", "mode": "NULLABLE", "type": "FLOAT"},
-                    {"name": "humidity", "mode": "NULLABLE", "type": "FLOAT"},
-                    {"name": "sea_level", "mode": "NULLABLE", "type": "FLOAT"},
-                    {"name": "grnd_level", "mode": "NULLABLE", "type": "FLOAT"}
-                ],
+                bigquery_schema_fields=bq_table_schema,
                 s3_conn_id='aws_default',
                 gcs_conn_id='google_cloud_default',
                 bigquery_conn_id='bigquery_default'
@@ -138,9 +142,3 @@ def extract_open_weather_data_to_lake():
     extract_task >> load_task >> s3_to_bigquery_task
 
 weather_api_dag = extract_open_weather_data_to_lake()
-
-
-
-
-
-
