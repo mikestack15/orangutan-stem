@@ -44,6 +44,11 @@ lake_dest_path = f'raw/open_weather_map/bukit_lawang/{current_year}/{current_mon
 
 # BigQuery project.dataset.table and schema
 bq_dest = 'orangutan-orchard.bukit_lawang_weather.raw_ingested_main_weather_content'
+# bq_table = bigquery_table = {
+#     "projectId": "orangutan-orchard",
+#     "datasetId": "bukit_lawang_weather",
+#     "tableId": "raw_ingested_main_weather_content",
+# }
 
 # Bukit Lawang lat and long coordinates - feel free to update to yours!
 lat_long = {'lat': 3.5553, 'long': 98.1448}
@@ -102,16 +107,20 @@ def extract_open_weather_data_to_lake():
             bucket_name=lake_dest_bucket,
             replace=True
         )
-
-        # Load data from S3 bucket into GCS & BigQuery
-        gcs_bucket = 'orangutan-orchard'
-        gcs_key = f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/'
-        s3_to_bigquery_operator = S3ToGCSAndBigQueryOperator(
+    # define your tasks
+    extract_task = extract()
+    load_task = load(extract_task)    
+    # Load data from S3 bucket into GCS & BigQuery
+    gcs_bucket = 'orangutan-orchard'
+    gcs_key = f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/'
+    gcs_source_obj = f'{gcs_key}*.json'
+    s3_to_bigquery_task = S3ToGCSAndBigQueryOperator(
                 task_id='s3_to_bigquery',
                 s3_bucket=lake_dest_bucket,
                 s3_key=f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/',
                 gcs_bucket=gcs_bucket,
                 gcs_key=gcs_key,
+                gcs_source_obj=gcs_source_obj,
                 bigquery_table=bq_dest,
                 bigquery_schema_fields=[
                     {"name": "uuid", "mode": "REQUIRED", "type": "STRING"},
@@ -130,13 +139,13 @@ def extract_open_weather_data_to_lake():
                 bigquery_conn_id='bigquery_default'
             )
 
-        # Execute the BigQuery load operator
-        # Execute the BigQuery load operator
-        context = {"execution_date": datetime.datetime.now()}
-        s3_to_bigquery_operator.execute(context)
-
-    main_weather_data = extract()
-    load(main_weather_data)
-    
+    # Define dependencies
+    extract_task >> load_task >> s3_to_bigquery_task
 
 weather_api_dag = extract_open_weather_data_to_lake()
+
+
+
+
+
+

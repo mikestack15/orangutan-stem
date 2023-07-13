@@ -4,6 +4,7 @@ from airflow.models import BaseOperator
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.providers.google.cloud.hooks.gcs import GCSHook
 from airflow.providers.google.cloud.operators.bigquery import BigQueryInsertJobOperator
+from airflow.providers.google.cloud.transfers.gcs_to_bigquery import GCSToBigQueryOperator
 from airflow.providers.google.cloud.transfers.s3_to_gcs import S3ToGCSOperator
 logging.getLogger().setLevel(logging.INFO)
 
@@ -17,6 +18,7 @@ class S3ToGCSAndBigQueryOperator(BaseOperator):
         s3_key,
         gcs_bucket,
         gcs_key,
+        gcs_source_obj,
         bigquery_table,
         bigquery_schema_fields=None,
         s3_conn_id='aws_default',
@@ -30,6 +32,7 @@ class S3ToGCSAndBigQueryOperator(BaseOperator):
         self.s3_key = s3_key
         self.gcs_bucket = gcs_bucket
         self.gcs_key = gcs_key
+        self.gcs_source_obj = gcs_source_obj
         self.bigquery_table = bigquery_table
         self.bigquery_schema_fields = bigquery_schema_fields
         self.s3_conn_id = s3_conn_id
@@ -61,19 +64,16 @@ class S3ToGCSAndBigQueryOperator(BaseOperator):
         logging.info("File transferred from S3 to GCS successfully.")
 
         logging.info("Loading data from GCS to BigQuery...")
-        bigquery_operator = BigQueryInsertJobOperator(
+        bigquery_operator = GCSToBigQueryOperator(
             task_id='gcs_to_bigquery',
-            configuration={
-                'load': {
-                    'sourceFormat': 'NEWLINE_DELIMITED_JSON',
-                    'destinationTable': self.bigquery_table,
-                    'sourceUris': [gcs_object],
-                    'schema': {'fields': self.bigquery_schema_fields},
-                    'writeDisposition': 'WRITE_APPEND',
-                    'ignoreUnknownValues': True
-                }
-            },
-            gcp_conn_id=self.bigquery_conn_id
+            bucket=self.gcs_bucket,  # name of the GCS bucket
+            source_objects=[self.gcs_source_obj],  # GCS path for the file you want to load
+            destination_project_dataset_table=self.bigquery_table,  # 'project.dataset.table' for the BQ table
+            schema_fields=self.bigquery_schema_fields,
+            allow_quoted_newlines=True,
+            source_format="NEWLINE_DELIMITED_JSON",
+            write_disposition='WRITE_APPEND',  # specify what happens if the table already exists
+            #skip_leading_rows=1,  # useful for csv files with a header row
         )
         bigquery_operator.execute(context)
         logging.info("Data loaded from GCS to BigQuery successfully.")
