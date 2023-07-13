@@ -13,7 +13,7 @@
 <img src="https://github.com/mikestack15/orangutan-stem/blob/main/docs/wiki_pics/orangutan_stem_logo.jpg" width="300" height="200">
 
 # orangutan-stem
-Welcome to the orangutan-stem GitHub repo! Here you will find the repository containing our codebase and wiki for the pipelines we have built in the youtube series.
+Welcome to the orangutan-stem GitHub repo! Here you will find the repository containing our codebase and wiki for the pipelines we have built in the YouTube series.
 
 [orangutan-stem YouTube Channel](https://youtube.com/@orangutan-stem)
 
