@@ -14,7 +14,7 @@ import requests
 Activity 1: Open Weather Map API Airflow DAG
 
 Author: Michael Stack
-Last Updated: 7/13/2023
+Last Updated: 7/20/2023
 
 This DAG should work both locally and server-side if you utilize the docker setup in the airflow directory,
 have the open weather map api key set as an airflow variable, and connections for 'aws_default', 'bigquery_default', 
@@ -24,7 +24,7 @@ https://github.com/mikestack15/orangutan-stem/wiki/Activity-1:-Open-Weather-Map-
 
 Goal: Extract Open Weather Map API data into a date-partitioned S3 bucket/key path, transfer to gcs, and load into bigquery
 
-This is a good use-case of the Airflow Taskflow API. The activity also ensures that you have your local machine 
+This is a good use-case of the Airflow Taskflow API. The activity also ensures that you have your airflow instance 
 set up with the necessary AWS keys for S3, and you are able to successfully load data into GCP BigQuery.
 
 Be sure to follow along on the wiki if you need guidance on getting this DAG to work on your desired machine
@@ -121,8 +121,6 @@ def extract_open_weather_data_to_lake():
     extract_task = extract()
     load_task = load(extract_task)    
     # Load data from S3 bucket into GCS & BigQuery
-    #gcs_bucket = 'orangutan-orchard'
-    #gcs_key = f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/'
     gcs_source_obj = f'{lake_dest_path}*.json'
     s3_to_bigquery_task = S3ToGCSAndBigQueryOperator(
                 task_id='s3_to_bigquery',

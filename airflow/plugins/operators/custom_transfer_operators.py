@@ -70,7 +70,6 @@ class S3ToGCSAndBigQueryOperator(BaseOperator):
         gcs_hook = GCSHook(gcp_conn_id=self.gcs_conn_id)
 
         s3_object = f's3://{self.s3_bucket}/{self.s3_key}'
-        #gcs_object = f'gs://{self.gcs_bucket}/{self.gcs_key}'
 
         s3_to_gcs_op = S3ToGCSOperator(
             task_id="s3_to_gcs",
@@ -79,7 +78,6 @@ class S3ToGCSAndBigQueryOperator(BaseOperator):
             aws_conn_id=self.s3_conn_id,
             gcp_conn_id=self.gcs_conn_id,
             dest_gcs=f'gs://{self.gcs_bucket}/',
-            #gcs_prefix=gcs_object,
             replace=True,
             gzip=False,
             )
