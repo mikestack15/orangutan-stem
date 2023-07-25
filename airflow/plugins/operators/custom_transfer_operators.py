@@ -12,10 +12,10 @@ logging.getLogger().setLevel(logging.INFO)
 class S3ToGCSAndBigQueryOperator(BaseOperator):
     """
     Author: Michael Stack
-    Last Updated: 7/13/2023
+    Last Updated: 7/24/2023
 
-    This custom airflow operator transfers files from S3 to Google Cloud Storage (GCS) and then loads the data 
-    into the destination BigQuery table.
+    This custom airflow operator transfers json data objects from S3 to Google Cloud Storage (GCS) and then loads the data 
+    into the destination BigQuery table. You can change the 
 
     This operator inherits from the Airflow `BaseOperator` and uses the `S3ToGCSOperator` and `GCSToBigQueryOperator`.
     Airflow has excellent documentation on the `S3ToGCSOperator` and `GCSToBigQueryOperator` if you want to add additional
@@ -29,6 +29,8 @@ class S3ToGCSAndBigQueryOperator(BaseOperator):
         gcs_key (str): Key for the destination file in the GCS bucket.
         gcs_source_obj (str): Path of the file in GCS to be loaded into BigQuery.
         bigquery_table (str): Name of the BigQuery table (in 'dataset.table' format) where data will be loaded.
+        gcs_bq_source_format (str): options are ['CSV', 'NEWLINE_DELIMITED_JSON', 'AVRO', 'GOOGLE_SHEETS', 'DATASTORE_BACKUP', 'PARQUET']
+        bq_write_disposition (str): options are ['WRITE_APPEND', 'WRITE_TRUNCATE']
         bigquery_schema_fields (List[Dict], optional): List of schema fields for the BigQuery table.
         s3_conn_id (str, optional): ID of the Airflow connection used for S3.
         gcs_conn_id (str, optional): ID of the Airflow connection used for GCS.
@@ -45,6 +47,8 @@ class S3ToGCSAndBigQueryOperator(BaseOperator):
         gcs_key,
         gcs_source_obj,
         bigquery_table,
+        gcs_bq_source_format,
+        bq_write_disposition,
         bigquery_schema_fields=None,
         s3_conn_id='aws_default',
         gcs_conn_id='google_cloud_default',
@@ -59,6 +63,8 @@ class S3ToGCSAndBigQueryOperator(BaseOperator):
         self.gcs_key = gcs_key
         self.gcs_source_obj = gcs_source_obj
         self.bigquery_table = bigquery_table
+        self.gcs_bq_source_format = gcs_bq_source_format
+        self.bq_write_disposition = bq_write_disposition
         self.bigquery_schema_fields = bigquery_schema_fields
         self.s3_conn_id = s3_conn_id
         self.gcs_conn_id = gcs_conn_id
@@ -94,8 +100,8 @@ class S3ToGCSAndBigQueryOperator(BaseOperator):
             destination_project_dataset_table=self.bigquery_table,  # 'project.dataset.table' for the BQ table
             schema_fields=self.bigquery_schema_fields, # List[Dict] of fields 
             allow_quoted_newlines=True, # see https://airflow.apache.org/docs/apache-airflow-providers-google/stable/_modules/airflow/providers/google/cloud/transfers/gcs_to_bigquery.html#GCSToBigQueryOperator
-            source_format="NEWLINE_DELIMITED_JSON", # options are ['CSV', 'NEWLINE_DELIMITED_JSON', 'AVRO', 'GOOGLE_SHEETS', 'DATASTORE_BACKUP', 'PARQUET']
-            write_disposition='WRITE_APPEND',  # specify what happens if the table already exists ['WRITE_APPEND', 'WRITE_TRUNCATE']
+            source_format=self.gcs_bq_source_format, # options are ['CSV', 'NEWLINE_DELIMITED_JSON', 'AVRO', 'GOOGLE_SHEETS', 'DATASTORE_BACKUP', 'PARQUET']
+            write_disposition=self.bq_write_disposition,  # specify what happens if the table already exists ['WRITE_APPEND', 'WRITE_TRUNCATE']
             #skip_leading_rows=1,  # useful for csv files with a header row
         )
         bigquery_operator.execute(context)
