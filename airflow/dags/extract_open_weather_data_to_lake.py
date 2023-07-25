@@ -45,7 +45,8 @@ lake_dest_path = f'raw/open_weather_map/bukit_lawang/{current_year}/{current_mon
 s3_obj_path = f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/raw_ingested_main_weather_content.json'
 
 
-# BigQuery project.dataset.table and table schema
+# BigQuery project.dataset.table and table schema. You can store this object as a json in s3/gcs, but leaving here
+# to illustrate how BigQuery schemas are set up
 bq_dest = 'orangutan-orchard.bukit_lawang_weather.raw_ingested_main_weather_content'
 bq_table_schema = [
                     {"name": "uuid", "mode": "REQUIRED", "type": "STRING"},
@@ -60,15 +61,16 @@ bq_table_schema = [
                     {"name": "grnd_level", "mode": "NULLABLE", "type": "FLOAT"}
                 ]
 
-# Bukit Lawang lat and long coordinates - feel free to update to yours!
+# Bukit Lawang lat and long coordinates - feel free to update to yours! Also another thing you can put into s3/gcs or even a 
+# destination table you can retrieve programmatically
 lat_long = {'lat': 3.5553, 'long': 98.1448}
 
 
-@dag(start_date=days_ago(0),
-     schedule_interval='@hourly',
-     tags=['extract', 'weather-data'],
-     description='Run extraction for weather API data from Open Weather Map',
-     catchup=False)
+@dag(start_date=days_ago(0), # when you want the DAG to start
+     schedule_interval='@hourly', # how often you want the DAG to run
+     tags=['extract', 'weather-data'], # helps with searching your DAG list in airflow
+     description='Run extraction for weather API data from Open Weather Map', # description to associate to the DAG
+     catchup=False) # see https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dag-run.html#catchup
 def extract_open_weather_data_to_lake():
     @task()
     def extract():
@@ -131,6 +133,8 @@ def extract_open_weather_data_to_lake():
                 gcs_source_obj=gcs_source_obj,
                 bigquery_table=bq_dest,
                 bigquery_schema_fields=bq_table_schema,
+                gcs_bq_source_format="NEWLINE_DELIMITED_JSON",
+                bq_write_disposition="WRITE_APPEND",
                 s3_conn_id='aws_default',
                 gcs_conn_id='google_cloud_default',
                 bigquery_conn_id='bigquery_default'
