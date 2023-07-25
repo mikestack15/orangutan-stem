@@ -42,7 +42,7 @@ open_weather_api_key = Variable.get('open_weather_api_key')
 # as the gcs_bucket or s3_bucket variable
 lake_dest_bucket = "orangutan-orchard"
 lake_dest_path = f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/'
-s3_obj_path = f'raw/open_weather_map/bukit_lawang/{current_year}/{current_month}/{current_day}/{current_hour}/raw_ingested_main_weather_content.json'
+s3_obj_path = f'{lake_dest_path}raw_ingested_main_weather_content.json'
 
 
 # BigQuery project.dataset.table and table schema. You can store this object as a json in s3/gcs, but leaving here
