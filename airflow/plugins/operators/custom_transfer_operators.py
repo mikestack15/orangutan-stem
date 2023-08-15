@@ -15,7 +15,11 @@ class S3ToGCSAndBigQueryOperator(BaseOperator):
     Last Updated: 7/24/2023
 
     This custom airflow operator transfers json data objects from S3 to Google Cloud Storage (GCS) and then loads the data 
-    into the destination BigQuery table. You can change the 
+    into the destination BigQuery table. Be sure to set up the prerequisite connections needed for this operator 
+    to run successfully, which includes:
+    s3_conn_id
+    gcs_conn_id
+    bigquery_conn_id
 
     This operator inherits from the Airflow `BaseOperator` and uses the `S3ToGCSOperator` and `GCSToBigQueryOperator`.
     Airflow has excellent documentation on the `S3ToGCSOperator` and `GCSToBigQueryOperator` if you want to add additional
