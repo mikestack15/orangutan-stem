@@ -41,7 +41,7 @@ Be sure to read the [requirements](https://github.com/mikestack15/orangutan-stem
 3. Activity Three: Coming Sept 2023!
 4. Activity Four: Coming Oct 2023!
 5. Activity Five: Coming Dec 2023!
-6. Activity Six: Coming Jan 2023!
+6. Activity Six: Coming Jan 2024!
 
 
 ## Learning Resources for Beginners
