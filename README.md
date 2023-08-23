@@ -47,8 +47,9 @@ Be sure to read the [requirements](https://github.com/mikestack15/orangutan-stem
 
 1. [Table of Contents](https://github.com/mikestack15/orangutan-stem/wiki)
 2. [Curriculum](https://github.com/mikestack15/orangutan-stem/wiki/Curriculum)
-3. [Requirements](https://github.com/mikestack15/orangutan-stem/wiki/Requirements)
-4. [Learning Resources Wiki](https://github.com/mikestack15/orangutan-stem/wiki/Learning-Resources)
+3. [Learning Resources Wiki](https://github.com/mikestack15/orangutan-stem/wiki/Learning-Resources)
+4. [Requirements](https://github.com/mikestack15/orangutan-stem/wiki/Requirements)
+
 
 
 <img src="https://github.com/mikestack15/orangutan-stem/blob/main/docs/wiki_pics/orangutan_orchard_mango_trees_may_2023.JPG" width="400" height="500">
