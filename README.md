@@ -36,7 +36,7 @@ Be sure to read the [requirements](https://github.com/mikestack15/orangutan-stem
 4. No fear of failing! Realistically, it takes thousands of hours to become above-average in this field, so be sure to practice like you're Michael Jordan, and never give up like you are Kurt Warner!
 
 ## Activities
-1. [Activity One](https://github.com/mikestack15/orangutan-stem/wiki/Activity-1:-Open-Weather-Map-API-Data-Pipeline)
+1. [Activity One: Open Weather Map API Data Pipeline](https://github.com/mikestack15/orangutan-stem/wiki/Activity-1:-Open-Weather-Map-API-Data-Pipeline)
 2. Activity Two: Coming Sept 2023!
 3. Activity Three: Coming Sept 2023!
 4. Activity Four: Coming Oct 2023!
