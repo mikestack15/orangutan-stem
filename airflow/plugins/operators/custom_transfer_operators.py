@@ -36,9 +36,9 @@ class S3ToGCSAndBigQueryOperator(BaseOperator):
         gcs_bq_source_format (str): options are ['CSV', 'NEWLINE_DELIMITED_JSON', 'AVRO', 'GOOGLE_SHEETS', 'DATASTORE_BACKUP', 'PARQUET']
         bq_write_disposition (str): options are ['WRITE_APPEND', 'WRITE_TRUNCATE']
         bigquery_schema_fields (List[Dict], optional): List of schema fields for the BigQuery table.
-        s3-conn-id (str, optional): ID of the Airflow connection used for S3.
-        gcs-conn-id (str, optional): ID of the Airflow connection used for GCS.
-        bigquery-conn-id (str, optional): ID of the Airflow connection used for BigQuery.
+        s3_conn_id (str, optional): ID of the Airflow connection used for S3.
+        gcs_conn_id (str, optional): ID of the Airflow connection used for GCS.
+        bigquery_conn_id (str, optional): ID of the Airflow connection used for BigQuery.
     """
 
     template_fields = ('s3_key', 'gcs_bucket', 'gcs_key', 'bigquery_table')
@@ -54,9 +54,9 @@ class S3ToGCSAndBigQueryOperator(BaseOperator):
         gcs_bq_source_format,
         bq_write_disposition,
         bigquery_schema_fields=None,
-        s3_conn_id='aws-default',
-        gcs_conn_id='google-cloud-default',
-        bigquery_conn_id='bigquery-default',
+        s3_conn_id='aws_default',
+        gcs_conn_id='google_cloud_default',
+        bigquery_conn_id='bigquery_default',
         *args,
         **kwargs
     ):
