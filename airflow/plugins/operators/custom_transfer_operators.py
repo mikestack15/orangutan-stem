@@ -12,7 +12,7 @@ logging.getLogger().setLevel(logging.INFO)
 class S3ToGCSAndBigQueryOperator(BaseOperator):
     """
     Author: Michael Stack
-    Last Updated: 7/24/2023
+    Last Updated: 8/28/2023
 
     This custom airflow operator transfers json data objects from S3 to Google Cloud Storage (GCS) and then loads the data 
     into the destination BigQuery table. Be sure to set up the prerequisite connections needed for this operator 
@@ -54,9 +54,9 @@ class S3ToGCSAndBigQueryOperator(BaseOperator):
         gcs_bq_source_format,
         bq_write_disposition,
         bigquery_schema_fields=None,
-        s3_conn_id='aws_default',
-        gcs_conn_id='google_cloud_default',
-        bigquery_conn_id='bigquery_default',
+        s3_conn_id='aws-default',
+        gcs_conn_id='google-cloud-default',
+        bigquery_conn_id='bigquery-default',
         *args,
         **kwargs
     ):

@@ -17,8 +17,8 @@ Author: Michael Stack
 Last Updated: 7/24/2023
 
 This DAG should work both locally and server-side if you utilize the docker setup in the airflow directory,
-have the open weather map api key set as an airflow variable, and connections for 'aws_default', 'bigquery_default', 
-'google_cloud_default'
+have the open weather map api key set as an airflow variable, and connections for 'aws-default', 'bigquery-default', 
+'google-cloud-default'
 Follow the instructions provided in the wiki,
 https://github.com/mikestack15/orangutan-stem/wiki/Activity-1:-Open-Weather-Map-API-Data-Pipeline
 
@@ -112,7 +112,7 @@ def extract_open_weather_data_to_lake():
         data = json.dumps(ingested_main_weather_content)
 
         # Load data into AWS S3
-        s3_hook = S3Hook(aws_conn_id='aws_default')
+        s3_hook = S3Hook(aws_conn_id='aws-default')
         s3_hook.load_string(
             data,
             s3_obj_path,
@@ -135,9 +135,9 @@ def extract_open_weather_data_to_lake():
                 bigquery_schema_fields=bq_table_schema,
                 gcs_bq_source_format="NEWLINE_DELIMITED_JSON",
                 bq_write_disposition="WRITE_APPEND",
-                s3_conn_id='aws_default',
-                gcs_conn_id='google_cloud_default',
-                bigquery_conn_id='bigquery_default'
+                s3_conn_id='aws-default',
+                gcs_conn_id='google-cloud-default',
+                bigquery_conn_id='bigquery-default'
             )
 
     # Define dependencies
