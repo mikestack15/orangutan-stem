@@ -14,7 +14,7 @@ import requests
 Activity 1: Open Weather Map API Airflow DAG
 
 Author: Michael Stack
-Last Updated: 7/24/2023
+Last Updated: 8/28/2023
 
 This DAG should work both locally and server-side if you utilize the docker setup in the airflow directory,
 have the open weather map api key set as an airflow variable, and connections for 'aws-default', 'bigquery-default', 
