@@ -100,7 +100,7 @@ class S3ToGCSAndBigQueryOperator(BaseOperator):
         bigquery_operator = GCSToBigQueryOperator(
             task_id='gcs_to_bigquery',
             bucket=self.gcs_bucket,  # name of the GCS bucket where the source object is loaded
-            source_objects=[self.gcs_source_obj],  # GCS path for the file you want to load
+            source_objects=[self.gcs_source_obj],  # GCS path for the file you want to load into bigquery
             destination_project_dataset_table=self.bigquery_table,  # 'project.dataset.table' for the BQ table
             schema_fields=self.bigquery_schema_fields, # List[Dict] of fields 
             allow_quoted_newlines=True, # see https://airflow.apache.org/docs/apache-airflow-providers-google/stable/_modules/airflow/providers/google/cloud/transfers/gcs_to_bigquery.html#GCSToBigQueryOperator
