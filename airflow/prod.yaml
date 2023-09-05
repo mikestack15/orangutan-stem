@@ -18,7 +18,7 @@
 
 # Basic Airflow cluster configuration for CeleryExecutor with Redis and PostgreSQL.
 #
-# WARNING: This configuration is for local development. Do not use it in a production deployment.
+# WARNING: This configuration is for prod server deployment. Do not use it in a local deployment.
 #
 # This configuration supports basic configuration using environment variables or an .env file
 # The following variables are supported:
