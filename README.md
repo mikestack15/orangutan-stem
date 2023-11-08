@@ -37,11 +37,11 @@ Be sure to read the [requirements](https://github.com/mikestack15/orangutan-stem
 
 ## Activities
 1. [Activity One: Open Weather Map API Data Pipeline](https://github.com/mikestack15/orangutan-stem/wiki/Activity-1:-Open-Weather-Map-API-Data-Pipeline)
-2. Activity Two: Coming Sept 2023!
-3. Activity Three: Coming Sept 2023!
-4. Activity Four: Coming Oct 2023!
-5. Activity Five: Coming Dec 2023!
-6. Activity Six: Coming Jan 2024!
+2. Activity Two: Optics Data Pipeline
+3. Activity Three: Data Collection and Processing with Edge Computing
+4. Activity Four: Drone Survey Data Pipelines for AI
+5. Activity Five: TBD
+6. Activity Six: TBD
 
 ## Getting started
 
