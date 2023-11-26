@@ -7,7 +7,8 @@ from dotenv import load_dotenv
 def fetch_weather_data(api_key, location, output_path=None):
     """
     fetch_weather_data: retrieves minutely weather api data for precise coordinates at the time of 
-    the tomorrow.io API request
+    the tomorrow.io API request. *Note, a tomorrow.io user account, API key, and enviornment varaible 
+    of the key is required for this code to run successfully
 
     params:
     api_key (str): the string-value provided by the API provider
