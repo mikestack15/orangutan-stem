@@ -1,45 +1,37 @@
 import requests
 import pandas as pd
-import os
 from datetime import datetime
 from dotenv import load_dotenv
+import os
+import boto3
+from botocore.exceptions import NoCredentialsError
+from io import BytesIO  # Import BytesIO for in-memory operations
 
 class WeatherDataFetcher:
-    def __init__(self, api_key, location, output_path):
-        """
-        Initialize the WeatherDataFetcher.
-
-        Parameters:
-        - api_key (str): The API key for accessing the tomorrow.io API.
-        - location (dict): Dictionary containing latitude and longitude.
-        - output_path (str): The directory path to save the weather data.
-        """
+    def __init__(self, api_key, location, s3_output_path, s3_bucket):
         self.api_key = api_key
         self.location = location
-        self.output_path = output_path or os.path.expanduser("/sandbox/tomorrow_io_weather_data/")
-        self.verify_directory()
+        self.s3_output_path = s3_output_path or "raw/tomorrow_io_weather_data"
+        self.s3_bucket = s3_bucket
 
-    def verify_directory(self):
-        """
-        Verify if the output directory exists; if not, create it.
-        """
-        os.chdir('/Users/')
-        if not os.path.exists(self.output_path):
-            os.makedirs(self.output_path)
-            print(f"Directory '{self.output_path}' created.")
+    def upload_to_s3(self, df):
+        s3 = boto3.client('s3')
+        current_datetime = datetime.now().strftime("%Y_%m_%d_%H_%M")
+        file_name = f'{current_datetime}_tomorrow_io_weather_resp.parquet'
+        try:
+            with BytesIO() as buffer:
+                df.to_parquet(buffer, index=False)
+                buffer.seek(0)
+                s3.upload_fileobj(buffer, self.s3_bucket, f"{self.s3_output_path}/{file_name}")
+            print(f"Data successfully uploaded to S3 bucket '{self.s3_bucket}' at '{self.s3_output_path}'.")
+        except NoCredentialsError:
+            print("Credentials not available. Please check your AWS credentials.")
 
     def fetch_weather_data(self):
-        """
-        Fetch weather data from tomorrow.io API and save it as a Parquet file.
-        """
-        # API endpoint URL
         url = f'https://api.tomorrow.io/v4/weather/forecast?location={self.location["lat"]},{self.location["long"]}&apikey={self.api_key}'
-
-        # Fetching data from the API
         response = requests.get(url)
         data = response.json()
 
-        # Extracting relevant information
         minutely_data = data['timelines']['minutely']
         parsed_data = []
 
@@ -68,27 +60,22 @@ class WeatherDataFetcher:
                 'windDirection': values['windDirection'],
                 'windGust': values['windGust'],
                 'windSpeed': values['windSpeed']
-                # Add more fields as needed
             }
 
             parsed_data.append(parsed_entry)
 
-        # Creating a DataFrame for tabular representation
         df = pd.DataFrame(parsed_data)
 
-        # Save DataFrame as a Parquet file with a unique name
-        current_datetime = datetime.now().strftime("%Y_%m_%d_%H_%M")
-        file_name = f'{current_datetime}_tomorrow_io_weather_resp.parquet'
-        df.to_parquet(os.path.join(self.output_path, file_name))
-        print(f'Data saved successfully as {file_name} in {self.output_path}')
+        # Upload DataFrame to S3
+        self.upload_to_s3(df)
 
 if __name__ == "__main__":
     load_dotenv()
     api_key = os.environ.get('TOMORROW_IO_API_KEY')
     location = {'lat': 3.5553, 'long': 98.1448}
-    output_path = '/Users/michaelstack/sandbox/tomorrow_io_weather_data/'
+    s3_output_path = 'raw/tomorrow_io_weather_data'
+    s3_bucket = 'orangutan-orchard'  # Replace with your actual S3 bucket name
 
-    # Example usage
-    weather_fetcher = WeatherDataFetcher(api_key, location, output_path)
+    weather_fetcher = WeatherDataFetcher(api_key, location, s3_output_path, s3_bucket)
     weather_fetcher.fetch_weather_data()
 
