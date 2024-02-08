@@ -1,3 +1,5 @@
 /airflow/logs/
 .env
+*.pt
+*.DS_Store
 __pycache__

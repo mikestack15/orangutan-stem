@@ -1,4 +1,5 @@
 ﻿![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white)
 ![Apache Airflow](https://img.shields.io/badge/Apache%20Airflow-017CEE?style=for-the-badge&logo=Apache%20Airflow&logoColor=white)
 ![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
@@ -51,13 +52,3 @@ Be sure to read the [requirements](https://github.com/mikestack15/orangutan-stem
 4. [Requirements](https://github.com/mikestack15/orangutan-stem/wiki/Requirements)
 
 
-
-<img src="https://github.com/mikestack15/orangutan-stem/blob/main/docs/wiki_pics/orangutan_orchard_mango_trees_may_2023.JPG" width="400" height="500">
-
-### Orangutan Orchard, May 2023
-
-* As of May 2023, our farm is 3 years old!
-* Lots of mangos, bananas, and pineapples being harvested
-* We recently planted new dragonfruit and plan on setting up more still-frame optic sensors at the end of 2023 to track the growth. This data will be publically available!
-* Our avocado trees have lots of flowers blooming
-* Supri (pictured above) manages our farm and fills out digital agricultural surveys that track important attributes of the crops we are collecting data on
