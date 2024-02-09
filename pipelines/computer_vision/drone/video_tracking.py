@@ -3,7 +3,7 @@ from ultralytics import YOLO
 
 """
 Author: Michael Stack
-Last Modified: 2/7/2023
+Last Modified: 2/7/2024
 
 YOLOv8 Object Tracker for Computer Vision videos. This python module will allow you to place your own video inside the 
 'videos/' directory and replace the variable video_name in the Example Usage section with whatever video you want! This is 
@@ -16,7 +16,6 @@ https://docs.ultralytics.com/modes/train/
 For new feature requests (i.e. checking video types and converting them to .mp4 by default), please submit a git issue to the 
 orangutan-stem GitHub Repo
 """
-
 
 class ObjectTracker:
     def __init__(self, video_path_prefix, video_media_type='.mp4'):
@@ -55,7 +54,7 @@ class ObjectTracker:
         cv2.destroyAllWindows()
 
 
-video_name = 'orangutan_stem_final_landing_page'
+video_name = 'wally'
 
 # Example usage:
 video_path_prefix = f'./videos/{video_name}'
