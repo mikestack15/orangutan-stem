@@ -3,7 +3,7 @@ from ultralytics import YOLO
 
 """
 Author: Michael Stack
-Last Modified: 2/7/2024
+Last Modified: 2/12/2024
 
 YOLOv8 Object Tracker for Computer Vision videos. This python module will allow you to place your own video inside the 
 'videos/' directory and replace the variable video_name in the Example Usage section with whatever video you want! This is 
