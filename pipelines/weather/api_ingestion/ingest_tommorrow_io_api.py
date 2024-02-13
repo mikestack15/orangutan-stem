@@ -8,13 +8,31 @@ from botocore.exceptions import NoCredentialsError
 from io import BytesIO  # Import BytesIO for in-memory operations
 
 class WeatherDataFetcher:
+    """
+    A class to fetch weather data using the Tomorrow.io API
+    and upload it to an S3 bucket.
+    """
+
     def __init__(self, api_key, location, s3_output_path, s3_bucket):
+        """
+        Initialize the WeatherDataFetcher object.
+
+        :param api_key: API key for Tomorrow.io API.
+        :param location: Dictionary containing latitude and longitude coordinates.
+        :param s3_output_path: Path to the S3 bucket where data will be uploaded.
+        :param s3_bucket: Name of the S3 bucket.
+        """
         self.api_key = api_key
         self.location = location
         self.s3_output_path = s3_output_path or "raw/tomorrow_io_weather_data"
         self.s3_bucket = s3_bucket
 
     def upload_to_s3(self, df):
+        """
+        Upload DataFrame to the specified S3 bucket.
+
+        :param df: Pandas DataFrame containing weather data.
+        """
         s3 = boto3.client('s3')
         current_datetime = datetime.now().strftime("%Y_%m_%d_%H_%M")
         file_name = f'{current_datetime}_tomorrow_io_weather_resp.parquet'
@@ -28,6 +46,9 @@ class WeatherDataFetcher:
             print("Credentials not available. Please check your AWS credentials.")
 
     def fetch_weather_data(self):
+        """
+        Fetch weather data from Tomorrow.io API and process it.
+        """
         url = f'https://api.tomorrow.io/v4/weather/forecast?location={self.location["lat"]},{self.location["long"]}&apikey={self.api_key}'
         response = requests.get(url)
         data = response.json()
@@ -78,4 +99,5 @@ if __name__ == "__main__":
 
     weather_fetcher = WeatherDataFetcher(api_key, location, s3_output_path, s3_bucket)
     weather_fetcher.fetch_weather_data()
+
 
