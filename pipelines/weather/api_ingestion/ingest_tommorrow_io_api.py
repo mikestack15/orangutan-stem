@@ -11,6 +11,12 @@ class WeatherDataFetcher:
     """
     A class to fetch weather data using the Tomorrow.io API
     and upload it to an S3 bucket.
+
+    IMPORTANT
+    ***Be sure to create a .env file in the orangutan-stem/pipelines/weather/api_ingestion/ directory in the repo***
+    the .gitignore file should ignore all .env files safely, but be sure to double-check.
+
+
     """
 
     def __init__(self, api_key, location, s3_output_path, s3_bucket):
