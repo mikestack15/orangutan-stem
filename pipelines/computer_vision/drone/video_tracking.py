@@ -54,7 +54,7 @@ class ObjectTracker:
         cv2.destroyAllWindows()
 
 
-video_name = 'wally'
+video_name = 'sinabung_sheep'
 
 # Example usage:
 video_path_prefix = f'./videos/{video_name}'
