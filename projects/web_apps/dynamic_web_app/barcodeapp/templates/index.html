@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Power BI Report</title>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Disables scroll on the page */
+  }
+  #iframe-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  #scroll-container, #bottom-scroll-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 50px; /* Adjust height as needed */
+    background: rgba(0,0,0,0.5); /* Semi-transparent black */
+    z-index: 2;
+  }
+  #scroll-container {
+    top: 0;
+  }
+  #bottom-scroll-container {
+    bottom: 0;
+  }
+</style>
+</head>
+<body>
+<div id="iframe-container">
+  <iframe src="https://app.powerbi.com/view?r=eyJrIjoiZmE2MTVjZTAtZGY5Yy00MzI1LWFhY2EtZWEyZDNlNmFhZThmIiwidCI6IjFiNzk4MmM2LWE1NjEtNDU1NC05OGNiLTU3ODg4M2VhNTk2NyIsImMiOjl9" frameborder="0" style="width:100%; height:100%;" allowFullScreen="true"></iframe>
+</div>
+<div id="scroll-container">
+  <div id="scroll-text">Top Banner Content</div>
+</div>
+<div id="bottom-scroll-container">
+  <div id="bottom-scroll-text">Bottom Banner Content</div>
+</div>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
