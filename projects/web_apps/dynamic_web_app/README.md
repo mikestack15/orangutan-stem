@@ -77,9 +77,10 @@ In your `barcodeproject` directory, you will find several files crucial for the 
 
 ## Step 5: Run the Django Development Server
 
-To see your Django application in action, you need to start the Django development server. Run the following command from the directory containing the `manage.py` file:
+To see your Django application in action, you need to start the Django development server. Run the following commands so that the server is run from the correct directory that contains the `manage.py` file:
 
 ```
+cd ..
 python manage.py runserver
 ```
 
