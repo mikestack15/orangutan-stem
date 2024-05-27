@@ -11,14 +11,16 @@
     padding: 0;
     height: 100%;
     overflow: hidden; /* Disables scroll on the page */
+    background-color: #000; /* Sets the background to black */
   }
   #iframe-container {
     position: absolute;
-    top: 0;
+    top: 50px; /* Space for top banner */
     left: 0;
-    width: 100%;
-    height: 100%;
+    right: 18%; /* Adjusted to make the iframe slightly wider */
+    bottom: 50px; /* Same height as bottom banner to clear it */
     z-index: 1;
+    overflow: auto; /* Enables scrollbar if the content overflows */
   }
   #scroll-container, #bottom-scroll-container {
     position: absolute;
@@ -34,18 +36,64 @@
   #bottom-scroll-container {
     bottom: 0;
   }
+  .gif-container {
+    position: absolute;
+    right: 10px; /* 10px from the right */
+    width: 15%; /* Reduced width of the GIF container */
+    z-index: 3; /* Ensure it's above other content, including the banner */
+  }
+  #top-gif-container {
+    top: 120px; /* Increased to lower the GIF slightly */
+  }
+  #bottom-gif-container {
+    bottom: 40px; /* Reduced to move the GIF closer to the bottom banner text */
+  }
 </style>
 </head>
 <body>
-<div id="iframe-container">
-  <iframe src="https://app.powerbi.com/view?r=eyJrIjoiZmE2MTVjZTAtZGY5Yy00MzI1LWFhY2EtZWEyZDNlNmFhZThmIiwidCI6IjFiNzk4MmM2LWE1NjEtNDU1NC05OGNiLTU3ODg4M2VhNTk2NyIsImMiOjl9" frameborder="0" style="width:100%; height:100%;" allowFullScreen="true"></iframe>
-</div>
-<div id="scroll-container">
+  <div id="iframe-container">
+    <div class='tableauPlaceholder' id='viz1713992587682' style='position: relative'>
+      <noscript><a href='#'><img alt='Sales Overview ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Su&#47;Superstore-DarkMode&#47;SalesOverview&#47;1_rss.png' style='border: none' /></a></noscript>
+      <object class='tableauViz' style='display:none;'>
+        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+        <param name='embed_code_version' value='3' />
+        <param name='site_root' value='' />
+        <param name='name' value='Superstore-DarkMode&#47;SalesOverview' />
+        <param name='tabs' value='no' />
+        <param name='toolbar' value='yes' />
+        <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Su&#47;Superstore-DarkMode&#47;SalesOverview&#47;1.png' />
+        <param name='animate_transition' value='yes' />
+        <param name='display_static_image' value='yes' />
+        <param name='display_spinner' value='yes' />
+        <param name='display_overlay' value='yes' />
+        <param name='display_count' value='yes' />
+        <param name='language' value='en-US' />
+      </object>
+    </div>
+    <script type='text/javascript'>
+      var divElement = document.getElementById('viz1713992587682');
+      var vizElement = divElement.getElementsByTagName('object')[0];
+      vizElement.style.width='1300px'; // Increased by 10% from 1100px to 1210px
+      vizElement.style.height='877px';
+      var scriptElement = document.createElement('script');
+      scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+      vizElement.parentNode.insertBefore(scriptElement, vizElement);
+    </script>
+  </div>
+  
   <div id="scroll-text">Top Banner Content</div>
 </div>
 <div id="bottom-scroll-container">
   <div id="bottom-scroll-text">Bottom Banner Content</div>
 </div>
+<div id="top-gif-container" class="gif-container">
+  <img src="{% static 'data/049000006582.gif' %}" alt="Animated GIF" style="width: 100%;">
+</div>
+<div id="bottom-gif-container" class="gif-container">
+  <img src="{% static 'data/049000006582.gif' %}" alt="Animated GIF" style="width: 100%;">
+</div>
 <script src="{% static 'js/script.js' %}"></script>
 </body>
 </html>
+
+
